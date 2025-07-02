@@ -2,6 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import dynamic from 'next/dynamic'
+
+// Dynamic import für bessere Performance
+const LoaderSequence = dynamic(() => import('../components/LoaderSequence'), {
+  ssr: false
+})
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Sphere, MeshDistortMaterial, Float } from '@react-three/drei'
 import { ArrowRight, ChevronDown, Target, Users, TrendingUp, Cpu, BarChart3, Layers, Rocket, Clock, Shield, Menu, X } from 'lucide-react'
@@ -746,8 +752,8 @@ function CTASection() {
   )
 }
 
-// Main App Component
-export default function Home() {
+// Main Website Component
+function MainWebsite() {
   return (
     <main className="min-h-screen bg-slate-900">
       <Navigation />
@@ -758,5 +764,70 @@ export default function Home() {
       <ProcessSection />
       <CTASection />
     </main>
+  )
+}
+
+// Main App Component with Loader
+export default function Home() {
+  const [showLoader, setShowLoader] = useState(true)
+  const [isReady, setIsReady] = useState(false)
+
+  // Preload wichtige Assets
+  useEffect(() => {
+    const preloadAssets = async () => {
+      // Preload Logo
+      const logoImg = new globalThis.Image()
+      logoImg.src = '/logo.png'
+      
+      // Warten bis Assets geladen sind
+      await new Promise(resolve => {
+        logoImg.onload = resolve
+        logoImg.onerror = resolve // Auch bei Fehlern fortfahren
+      })
+      
+      setIsReady(true)
+    }
+    
+    preloadAssets()
+  }, [])
+
+  const handleLoaderComplete = () => {
+    setShowLoader(false)
+  }
+
+  return (
+    <>
+      <AnimatePresence mode="wait">
+        {showLoader && isReady && (
+          <LoaderSequence onComplete={handleLoaderComplete} />
+        )}
+      </AnimatePresence>
+      
+      <AnimatePresence>
+        {!showLoader && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              duration: 1.2, 
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
+          >
+            <MainWebsite />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      
+      {/* Fallback für langsame Verbindungen */}
+      {!isReady && (
+        <div className="fixed inset-0 bg-slate-900 flex items-center justify-center z-50">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            className="w-12 h-12 border-4 border-cyan-400 border-t-transparent rounded-full"
+          />
+        </div>
+      )}
+    </>
   )
 }
