@@ -196,8 +196,8 @@ function BeaibleQuestion({ onComplete }: { onComplete: () => void }) {
           <Image
             src="/logo.png"
             alt="Beaible Logo"
-            width={300}
-            height={300}
+            width={400}
+            height={120}
             className="mx-auto filter brightness-110 drop-shadow-2xl"
           />
           
@@ -246,9 +246,9 @@ function BeaibleQuestion({ onComplete }: { onComplete: () => void }) {
           y: displayText === fullText ? 0 : 20
         }}
         transition={{ duration: 0.8, delay: 0.5 }}
-        className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto px-4"
+        className="text-xl md:text-2xl text-secondary max-w-2xl mx-auto px-4"
       >
-        Consulting Future For You
+        FUTURE STARTS WITH YOU
       </motion.p>
     </motion.div>
   )
@@ -323,7 +323,7 @@ export default function LoaderSequence({ onComplete }: LoaderSequenceProps) {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="text-cyan-300 text-xl md:text-2xl font-light mt-8 tracking-wider"
             >
-              Initialisiere KI-Transformation...
+              {/* Initialisiere KI-Transformation... */}
             </motion.p>
           </div>
         )}

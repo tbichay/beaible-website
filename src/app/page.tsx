@@ -3,792 +3,952 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
+import { ArrowRight, CheckCircle, Calendar, MapPin, Users, Lightbulb, Target, Brain, MessageSquare, Linkedin, Instagram, Mail, Phone, ExternalLink } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Logo } from '@/components/ui/Logo'
+import { Toast } from '@/components/ui/Toast'
+import { useToast } from '@/hooks/useToast'
+import { TurnstileWidget } from '@/components/ui/Turnstile'
+import { Navigation } from '@/components/Navigation'
 
 // Dynamic import für bessere Performance
 const LoaderSequence = dynamic(() => import('../components/LoaderSequence'), {
   ssr: false
 })
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Sphere, MeshDistortMaterial, Float } from '@react-three/drei'
-import { ArrowRight, ChevronDown, Target, Users, TrendingUp, Cpu, BarChart3, Layers, Rocket, Clock, Shield, Menu, X } from 'lucide-react'
-import Image from 'next/image'
 
-// Neural Network Component
-function NeuralNetwork() {
-  return (
-    <Canvas className="absolute inset-0 -z-10">
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
-      <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
-        <Sphere args={[1, 100, 200]} scale={2.5}>
-          <MeshDistortMaterial
-            color="#0891b2"
-            attach="material"
-            distort={0.3}
-            speed={2}
-            roughness={0.1}
-          />
-        </Sphere>
-      </Float>
-      <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
-    </Canvas>
-  )
-}
 
-// Animated particles component
-function ParticleField() {
-  const [particles, setParticles] = useState<Array<{id: number, x: number, y: number, opacity: number}>>([])
-
-  useEffect(() => {
-    const generateParticles = () => {
-      return Array.from({ length: 50 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        opacity: Math.random() * 0.5 + 0.1
-      }))
-    }
-    setParticles(generateParticles())
-  }, [])
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute w-1 h-1 bg-cyan-400 rounded-full"
-          style={{
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            opacity: particle.opacity
-          }}
-          animate={{
-            y: [0, -20, 0],
-            opacity: [particle.opacity, 0.8, particle.opacity]
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Infinity,
-            delay: Math.random() * 2
-          }}
-        />
-      ))}
-    </div>
-  )
-}
-
-// Hero Section Component
+// Hero Section
 function HeroSection() {
-  const [displayText, setDisplayText] = useState('')
-  const fullText = 'Ihr Unternehmen. Unsere KI. Ihre Zukunft.'
+  return (
+    <section id="home" className="relative min-h-screen flex items-center bg-background pt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              Bist du schon <span className="text-accent">beaible</span> für die Zukunft?
+            </h1>
+            <p className="text-xl text-secondary mb-8 leading-relaxed">
+              Ich begleite kleine und mittlere Unternehmen bei ihrer KI-Transformation – 
+              mit persönlicher Beratung aus dem Allgäu und einem ganzheitlichen Ansatz, 
+              der Technologie und Menschlichkeit verbindet.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href="#beratung" className="inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-full hover:bg-accent-hover transition-colors group">
+                Jetzt KI-Ready werden
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a href="#contact" className="inline-flex items-center justify-center px-6 py-3 border-2 border-accent text-accent font-medium rounded-full hover:bg-accent hover:text-white transition-colors">
+                Erstgespräch buchen
+              </a>
+            </div>
+          </motion.div>
 
-  useEffect(() => {
-    let i = 0
-    const timer = setInterval(() => {
-      if (i < fullText.length) {
-        setDisplayText(fullText.slice(0, i + 1))
-        i++
-      } else {
-        clearInterval(timer)
-      }
-    }, 100)
-    return () => clearInterval(timer)
-  }, [])
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
+          >
+            <div className="relative w-full max-w-lg mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-hover/20 rounded-3xl blur-3xl"></div>
+              <Image
+                src="/chris-klose.jpg"
+                alt="Christian Klose - beaible Consulting"
+                width={800}
+                height={1000}
+                className="relative rounded-3xl shadow-2xl w-full h-auto"
+                priority
+                quality={95}
+              />
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Portfolio Overview
+function PortfolioOverview() {
+  const services = [
+    {
+      icon: <Brain className="h-8 w-8" />,
+      title: "KI-First-Audit",
+      description: "Umfassende Analyse Ihrer aktuellen Prozesse und KI-Potenziale",
+      href: "/services/ki-first-audit"
+    },
+    {
+      icon: <Lightbulb className="h-8 w-8" />,
+      title: "KI-Medienkompetenz",
+      description: "Schulungen für den sicheren und effektiven Umgang mit KI-Tools",
+      href: "/services/ki-medienkompetenz"
+    },
+    {
+      icon: <Users className="h-8 w-8" />,
+      title: "Change Management",
+      description: "Begleitung bei der Integration von KI in Ihre Unternehmenskultur",
+      href: "/services/change-management"
+    },
+    {
+      icon: <Target className="h-8 w-8" />,
+      title: "Strategieberatung",
+      description: "Entwicklung maßgeschneiderter KI-Strategien für Ihr Unternehmen",
+      href: "/services/strategieberatung"
+    }
+  ]
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 overflow-hidden">
-      <ParticleField />
-      <div className="absolute inset-0 bg-black/20" />
-      
-      {/* 3D Background */}
-      <div className="absolute inset-0 h-full w-full">
-        <NeuralNetwork />
-      </div>
-
-      <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
-        {/* Logo */}
+    <section className="py-20 bg-muted">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
         >
-          <div className="relative inline-block">
-            <Image
-              src="/logo.png"
-              alt="Beaible Logo"
-              width={200}
-              height={200}
-              className="mx-auto filter brightness-110"
-            />
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Mein Portfolio im Überblick
+          </h2>
+          <p className="text-xl text-secondary max-w-3xl mx-auto">
+            Ganzheitliche KI-Beratung, die auf die Bedürfnisse von KMU zugeschnitten ist
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((service, index) => (
             <motion.div
-              className="absolute inset-0 bg-cyan-400/20 rounded-full blur-xl"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity
-              }}
-            />
-          </div>
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <Link
+                href={service.href}
+                className="block bg-card rounded-2xl p-6 hover:shadow-lg transition-all border border-border hover:scale-105 group"
+              >
+                <div className="text-accent mb-4 group-hover:scale-110 transition-transform">{service.icon}</div>
+                <h3 className="text-xl font-semibold text-card-foreground mb-2">{service.title}</h3>
+                <p className="text-secondary">{service.description}</p>
+                <div className="flex items-center text-accent mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-sm font-medium">Mehr erfahren</span>
+                  <ArrowRight className="h-4 w-4 ml-1" />
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// KI-Beratung Section
+function KIBeratungSection() {
+  const beratungsLeistungen = [
+    {
+      title: "KI-First-Audit Stufe 1",
+      subtitle: "Der Einstieg in Ihre KI-Transformation",
+      features: [
+        "Analyse Ihrer aktuellen Geschäftsprozesse",
+        "Identifikation von KI-Potenzialen",
+        "Erste Quick-Win Empfehlungen",
+        "Roadmap für die nächsten Schritte"
+      ],
+      href: "/services/ki-first-audit-stufe-1"
+    },
+    {
+      title: "KI-First-Audit Stufe 2",
+      subtitle: "Tiefgehende Analyse und Strategie",
+      features: [
+        "Detaillierte Prozessoptimierung",
+        "Konkrete Tool-Empfehlungen",
+        "ROI-Berechnungen",
+        "Implementierungsplan"
+      ],
+      href: "/services/ki-first-audit-stufe-2"
+    },
+    {
+      title: "KI-Medienkompetenz fördern",
+      subtitle: "Befähigung Ihres Teams",
+      features: [
+        "Praktische Workshops zu KI-Tools",
+        "Hands-on Training mit ChatGPT & Co",
+        "Best Practices für den Arbeitsalltag",
+        "Kontinuierliche Begleitung"
+      ],
+      href: "/services/ki-medienkompetenz-foerdern"
+    },
+    {
+      title: "KI-Landarzt-Konzept",
+      subtitle: "Persönliche Beratung vor Ort",
+      features: [
+        "Regelmäßige Sprechstunden im Allgäu",
+        "Individuelle Betreuung",
+        "Nahbare und verständliche Beratung",
+        "Langfristige Partnerschaft"
+      ],
+      href: "/services/ki-landarzt-konzept"
+    }
+  ]
+
+  return (
+    <section id="beratung" className="py-20 bg-muted">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Meine KI-Beratung von A bis Z
+          </h2>
+          <p className="text-xl text-secondary max-w-3xl mx-auto">
+            Ganzheitliche Begleitung für kleine und mittlere Unternehmen auf dem Weg in die KI-Zukunft
+          </p>
         </motion.div>
 
-        {/* Main Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight px-4"
-        >
-          <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-            {displayText}
-          </span>
-          <motion.span
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ duration: 1, repeat: Infinity }}
-            className="text-cyan-400"
-          >
-            |
-          </motion.span>
-        </motion.h1>
+        <div className="grid md:grid-cols-2 gap-8">
+          {beratungsLeistungen.map((leistung, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <Link
+                href={leistung.href}
+                className="block bg-card rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all border border-border hover:scale-105 group"
+              >
+                <h3 className="text-2xl font-bold text-card-foreground mb-2">{leistung.title}</h3>
+                <p className="text-accent font-medium mb-4">{leistung.subtitle}</p>
+                <ul className="space-y-3 mb-4">
+                  {leistung.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-accent mt-0.5 mr-3 flex-shrink-0" />
+                      <span className="text-secondary">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex items-center text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-sm font-medium">Mehr erfahren</span>
+                  <ArrowRight className="h-4 w-4 ml-1" />
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto px-4"
-        >
-          Consulting Future For You - KI-Beratung, digitale Transformation und Change Management für mittelständische Unternehmen
-        </motion.p>
-
-        {/* CTA Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          className="flex flex-col md:flex-row gap-4 justify-center items-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-12 bg-accent rounded-2xl p-8 text-white text-center"
         >
-          <motion.button
-            whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(8, 145, 178, 0.5)" }}
-            whileTap={{ scale: 0.95 }}
-            className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative flex items-center gap-2">
-              Transformation starten
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </motion.button>
-
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-semibold rounded-full hover:bg-cyan-400/10 transition-colors duration-300"
-          >
-            Kostenlose Analyse
-          </motion.button>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="text-cyan-400"
-          >
-            <ChevronDown className="w-8 h-8" />
-          </motion.div>
+          <h3 className="text-2xl font-bold mb-4">
+            Change Management & Persönlichkeitsentwicklung
+          </h3>
+          <p className="text-lg mb-6 max-w-3xl mx-auto">
+            KI-Integration bedeutet Veränderung. Ich begleite Sie und Ihr Team dabei, 
+            diese Transformation als Chance zu nutzen und eine zukunftsfähige Unternehmenskultur zu entwickeln.
+          </p>
+          <a href="#contact" className="inline-flex items-center px-6 py-3 bg-white text-accent font-medium rounded-full hover:bg-accent-hover hover:text-white transition-colors">
+            Mehr erfahren
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </a>
         </motion.div>
       </div>
     </section>
   )
 }
 
-// Navigation Component
-function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+// Zusätzliche Angebote Section
+function ZusatzangeboteSection() {
+  return (
+    <section id="angebote" className="py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Zusätzliche Angebote
+          </h2>
+          <p className="text-xl text-secondary max-w-3xl mx-auto">
+            Spezialisierte Beratung für Medienhäuser und Social Media
+          </p>
+        </motion.div>
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+        <div className="grid md:grid-cols-2 gap-8">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-accent/10 to-accent/20 rounded-2xl p-8 border border-border"
+          >
+            <MessageSquare className="h-12 w-12 text-blue-600 mb-4" />
+            <h3 className="text-2xl font-bold text-foreground mb-4">
+              Beratung für Medienhäuser
+            </h3>
+            <p className="text-secondary mb-6">
+              Mit meiner journalistischen Expertise begleite ich Medienhäuser bei der 
+              Entwicklung zukunftsfähiger Content-Strategien und der Integration von KI 
+              in redaktionelle Prozesse.
+            </p>
+            <ul className="space-y-2 text-secondary">
+              <li className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
+                KI-gestützte Content-Produktion
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
+                Zielgruppenanalyse und Personalisierung
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
+                Workflow-Optimierung
+              </li>
+            </ul>
+          </motion.div>
 
-  const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Analyse', href: '#analyse' },
-    { name: 'Lösungen', href: '#lösungen' },
-    { name: 'Team', href: '#team' },
-    { name: 'Vorgehen', href: '#vorgehen' },
-    { name: 'Kontakt', href: '#kontakt' }
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-accent-hover/10 to-accent-hover/20 rounded-2xl p-8 border border-border"
+          >
+            <Instagram className="h-12 w-12 text-purple-600 mb-4" />
+            <h3 className="text-2xl font-bold text-foreground mb-4">
+              Social-Media-Strategien
+            </h3>
+            <p className="text-secondary mb-6">
+              Entwicklung und Umsetzung effektiver Social-Media-Strategien für KMU 
+              und Organisationen – mit KI-Tools für mehr Effizienz und Reichweite.
+            </p>
+            <ul className="space-y-2 text-secondary">
+              <li className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-purple-600 mr-2" />
+                Content-Planung mit KI
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-purple-600 mr-2" />
+                Community Management
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-purple-600 mr-2" />
+                Performance-Analyse
+              </li>
+            </ul>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// KI-Beratung auf dem Land Section
+function KILandSection() {
+  return (
+    <section id="land" className="py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              KI-Beratung auf dem Land
+            </h2>
+            <div className="prose prose-lg text-secondary">
+              <p className="mb-4">
+                Mein Büro befindet sich unter dem historischen Heustadel in Bärenweiler – 
+                einem Zukunftsort im Herzen des Allgäus. Hier verbinde ich die Ruhe und 
+                Bodenständigkeit des ländlichen Raums mit modernster KI-Technologie.
+              </p>
+              <div className="bg-card rounded-xl p-6 mb-6 border border-border">
+                <h3 className="text-xl font-bold text-foreground mb-3 flex items-center">
+                  <Calendar className="h-6 w-6 text-green-600 mr-2" />
+                  KI-Sprechstunden vor Ort
+                </h3>
+                <p className="text-secondary mb-4">
+                  Regelmäßige Beratungstermine in Bärenweiler – persönlich, nahbar und auf Augenhöhe.
+                </p>
+                <a href="#contact" className="inline-flex items-center text-green-600 font-medium hover:text-green-700">
+                  Termin vereinbaren
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </div>
+              <div className="flex items-start space-x-3">
+                <MapPin className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-medium text-foreground">Analoge Events in Bärenweiler</p>
+                  <p className="text-secondary">
+                    Workshops, Netzwerktreffen und Vorträge – wo digitale Innovation auf 
+                    persönliche Begegnung trifft.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="mt-6">
+              <a 
+                href="https://heimat-baerenweiler.de" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-green-600 font-medium hover:text-green-700"
+              >
+                Mehr über den Zukunftsort Bärenweiler
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="grid grid-cols-2 gap-4">
+              <Image
+                src="/heustadel-1.jpg"
+                alt="Heustadel Bärenweiler"
+                width={300}
+                height={400}
+                className="rounded-2xl shadow-lg object-cover h-full"
+              />
+              <div className="space-y-4">
+                <Image
+                  src="/buero-1.jpg"
+                  alt="Büro unter dem Heustadel"
+                  width={300}
+                  height={190}
+                  className="rounded-2xl shadow-lg object-cover"
+                />
+                <Image
+                  src="/arbeitsplatz-1.jpg"
+                  alt="Arbeitsplatz"
+                  width={300}
+                  height={190}
+                  className="rounded-2xl shadow-lg object-cover"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// About Section
+function AboutSection() {
+  const partners = [
+    { name: "Datenmassiv", link: "https://datenmassiv.com" },
+    { name: "KI-Weitblick", link: "https://ki-weitblick.com" },
+    { name: "KI-Medienkompetenz", link: "https://ki-medienkompetenz.com" }
   ]
 
-  const handleNavClick = (href: string) => {
-    setIsMobileMenuOpen(false)
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+  return (
+    <section id="about" className="py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Über mich
+          </h2>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="lg:col-span-2"
+          >
+            <h3 className="text-2xl font-bold text-foreground mb-4">Mein Werdegang</h3>
+            <div className="prose prose-lg text-secondary">
+              <p className="mb-4">
+                Als erfahrener Journalist und Medienexperte habe ich den digitalen Wandel 
+                der Branche hautnah miterlebt. Diese Erfahrung nutze ich heute, um 
+                Unternehmen bei ihrer KI-Transformation zu begleiten.
+              </p>
+              <p className="mb-4">
+                Meine Expertise umfasst jahrelange Erfahrung in der Medienbranche, 
+                fundiertes Wissen über KI-Technologien und ihre praktische Anwendung 
+                sowie ein tiefes Verständnis für Change-Prozesse in Unternehmen.
+              </p>
+            </div>
+
+            <h3 className="text-2xl font-bold text-foreground mb-4 mt-8">
+              Warum ich der Richtige bin
+            </h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-card rounded-xl p-4 border border-border">
+                <h4 className="font-semibold text-foreground mb-2">Praxisnähe</h4>
+                <p className="text-secondary">
+                  Keine theoretischen Konzepte, sondern erprobte Lösungen aus der Praxis
+                </p>
+              </div>
+              <div className="bg-card rounded-xl p-4 border border-border">
+                <h4 className="font-semibold text-foreground mb-2">Verständlichkeit</h4>
+                <p className="text-secondary">
+                  Komplexe KI-Themen einfach und nachvollziehbar erklärt
+                </p>
+              </div>
+              <div className="bg-card rounded-xl p-4 border border-border">
+                <h4 className="font-semibold text-foreground mb-2">Persönlichkeit</h4>
+                <p className="text-secondary">
+                  Individuelle Betreuung statt Standardlösungen
+                </p>
+              </div>
+              <div className="bg-card rounded-xl p-4 border border-border">
+                <h4 className="font-semibold text-foreground mb-2">Nachhaltigkeit</h4>
+                <p className="text-secondary">
+                  Langfristige Begleitung für dauerhaften Erfolg
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            <div className="bg-card rounded-2xl p-6 border border-border">
+              <h3 className="text-xl font-bold text-foreground mb-4">
+                Zertifikate & Auszeichnungen
+              </h3>
+              <ul className="space-y-2 text-secondary">
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                  <span>Zertifizierter KI-Berater</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                  <span>Experte für digitale Transformation</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                  <span>Change Management Professional</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-card rounded-2xl p-6 border border-border">
+              <h3 className="text-xl font-bold text-foreground mb-4">
+                Partner & Netzwerk
+              </h3>
+              <ul className="space-y-3">
+                {partners.map((partner, index) => (
+                  <li key={index}>
+                    <a 
+                      href={partner.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-blue-600 hover:text-blue-700 font-medium"
+                    >
+                      {partner.name}
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="bg-card rounded-2xl p-6 border border-border">
+              <h3 className="text-xl font-bold text-foreground mb-4">
+                Social Media
+              </h3>
+              <div className="flex space-x-4">
+                <a 
+                  href="https://www.linkedin.com/in/christian-klose-616154242/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+                >
+                  <Linkedin className="h-6 w-6" />
+                </a>
+                <a 
+                  href="https://www.instagram.com/beaible_consulting/?igsh=NzR0M3pnMmV2YnBu#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-12 h-12 bg-pink-600 text-white rounded-full hover:bg-pink-700 transition-colors"
+                >
+                  <Instagram className="h-6 w-6" />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Contact Section
+function ContactSection() {
+  const { toast, showToast, hideToast } = useToast()
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+    honeypot: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState<string>('')
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          turnstileToken
+        }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        showToast(data.message || 'Nachricht erfolgreich gesendet!', 'success')
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          message: '',
+          honeypot: ''
+        })
+        setTurnstileToken('')
+      } else {
+        showToast(data.error || 'Ein Fehler ist aufgetreten.', 'error')
+      }
+    } catch {
+      showToast('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.', 'error')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-slate-900/95 backdrop-blur-md border-b border-cyan-400/20' : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <Image src="/logo.png" alt="Beaible" width={40} height={40} className="w-8 h-8 md:w-10 md:h-10" />
-            <span className="text-lg md:text-xl font-bold text-white">beaible</span>
-          </div>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-6 lg:space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => handleNavClick(item.href)}
-                className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-medium text-sm lg:text-base"
-              >
-                {item.name}
-              </button>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white p-2"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
+    <>
+      <Toast {...toast} onClose={hideToast} />
+      <section id="contact" className="py-20 bg-muted">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-slate-900/95 backdrop-blur-md border-t border-cyan-400/20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
           >
-            <div className="px-4 py-4 space-y-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  className="block w-full text-left text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-medium py-2"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Lass uns über deine KI-Zukunft sprechen
+            </h2>
+            <p className="text-xl text-secondary max-w-3xl mx-auto">
+              Vereinbare jetzt ein unverbindliches Erstgespräch
+            </p>
           </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
-  )
-}
 
-// Problem Analysis Section
-function ProblemAnalysis() {
-  const problems = [
-    {
-      icon: <Target className="w-8 h-8" />,
-      title: "Verpasste Chancen",
-      description: "KI-Potenziale bleiben ungenutzt, während die Konkurrenz bereits automatisiert"
-    },
-    {
-      icon: <TrendingUp className="w-8 h-8" />,
-      title: "Ineffiziente Prozesse",
-      description: "Manuelle Abläufe kosten Zeit und Geld, die in Innovation investiert werden könnten"
-    },
-    {
-      icon: <Users className="w-8 h-8" />,
-      title: "Mitarbeiter-Resistenz",
-      description: "Das Team fürchtet Veränderungen und blockiert digitale Transformation"
-    }
-  ]
-
-  return (
-    <section id="analyse" className="py-20 bg-slate-800 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800" />
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Kennen Sie diese <span className="text-cyan-400">Herausforderungen</span>?
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Mittelständische Unternehmen stehen vor einzigartigen Herausforderungen bei der digitalen Transformation
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {problems.map((problem, index) => (
+          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-slate-700/50 backdrop-blur-sm border border-cyan-400/20 rounded-2xl p-8 hover:border-cyan-400/40 transition-all duration-300 group"
+              className="bg-card rounded-2xl p-8 border border-border"
             >
-              <div className="text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300">
-                {problem.icon}
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">{problem.title}</h3>
-              <p className="text-gray-300">{problem.description}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"
-          >
-            Kostenlose Potenzial-Analyse starten
-          </motion.button>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-// Solutions Section
-function SolutionsSection() {
-  const solutions = [
-    {
-      icon: <Cpu className="w-10 h-10" />,
-      title: "KI-Strategieberatung",
-      description: "Maßgeschneiderte KI-Roadmap für Ihr Unternehmen",
-      features: ["Potenzial-Analyse", "Use-Case Identifikation", "ROI-Berechnung"],
-      color: "from-cyan-500 to-blue-600"
-    },
-    {
-      icon: <BarChart3 className="w-10 h-10" />,
-      title: "Prozessautomatisierung",
-      description: "Intelligente Automatisierung Ihrer Geschäftsprozesse",
-      features: ["Workflow-Optimierung", "KI-Integration", "Effizienzsteigerung"],
-      color: "from-purple-500 to-pink-600"
-    },
-    {
-      icon: <Users className="w-10 h-10" />,
-      title: "Change Management",
-      description: "Erfolgreiche Transformation durch Mitarbeiter-Engagement",
-      features: ["Schulungskonzepte", "Akzeptanzförderung", "Kulturwandel"],
-      color: "from-green-500 to-teal-600"
-    }
-  ]
-
-  return (
-    <section id="lösungen" className="py-20 bg-gradient-to-br from-slate-900 to-slate-800 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-        <div className="absolute top-40 right-10 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
-      </div>
-      
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Unsere <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">KI-Lösungen</span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Transformieren Sie Ihr Unternehmen mit maßgeschneiderten KI-Strategien und bewährten Change-Management-Methoden
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {solutions.map((solution, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50, rotateY: -15 }}
-              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ 
-                scale: 1.05, 
-                rotateY: 5,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
-              }}
-              className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-3xl p-8 overflow-hidden"
-            >
-              {/* Gradient Background */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${solution.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-              
-              {/* Icon */}
-              <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${solution.color} text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                {solution.icon}
-              </div>
-              
-              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors duration-300">
-                {solution.title}
+              <h3 className="text-2xl font-bold text-foreground mb-6">
+                Kontaktinformationen
               </h3>
-              
-              <p className="text-gray-300 mb-6 leading-relaxed">
-                {solution.description}
-              </p>
-              
-              <ul className="space-y-2 mb-8">
-                {solution.features.map((feature, featureIndex) => (
-                  <motion.li
-                    key={featureIndex}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 + featureIndex * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-center text-gray-300"
-                  >
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300" />
-                    {feature}
-                  </motion.li>
-                ))}
-              </ul>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`w-full py-3 px-6 bg-gradient-to-r ${solution.color} text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300`}
-              >
-                Mehr erfahren
-              </motion.button>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Team Section
-function TeamSection() {
-  const team = [
-    {
-      name: "Dr. Sarah Chen",
-      role: "KI-Strategin",
-      expertise: "Machine Learning & Business Strategy",
-      avatar: "👩‍💼",
-      skills: ["Deep Learning", "NLP", "Computer Vision"]
-    },
-    {
-      name: "Marcus Weber",
-      role: "Change Manager",
-      expertise: "Organizational Development",
-      avatar: "👨‍💻",
-      skills: ["Agile Transformation", "Leadership", "Team Development"]
-    },
-    {
-      name: "Lisa Rodriguez",
-      role: "Process Expert",
-      expertise: "Business Process Optimization",
-      avatar: "👩‍🔬",
-      skills: ["Automation", "Workflow Design", "Analytics"]
-    }
-  ]
-
-  return (
-    <section id="team" className="py-20 bg-slate-800 relative overflow-hidden">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Unser <span className="text-cyan-400">Expert*innen-Team</span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Profitieren Sie von der Expertise unserer KI- und Change-Management-Spezialisten
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {team.map((member, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="group relative bg-slate-700/50 backdrop-blur-sm border border-cyan-400/20 rounded-2xl p-8 hover:border-cyan-400/40 transition-all duration-300"
-            >
-              {/* Avatar */}
-              <div className="relative mb-6">
-                <div className="w-24 h-24 mx-auto bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-4xl group-hover:scale-110 transition-transform duration-300">
-                  {member.avatar}
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <Mail className="h-6 w-6 text-accent mt-1 mr-4" />
+                  <div>
+                    <p className="font-medium text-foreground">E-Mail</p>
+                    <a href="mailto:C.Klose@beaible.de" className="text-accent hover:text-accent-hover">
+                      C.Klose@beaible.de
+                    </a>
+                  </div>
                 </div>
-                <div className="absolute inset-0 bg-cyan-400/20 rounded-full blur-xl group-hover:scale-125 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
+                <div className="flex items-start">
+                  <Phone className="h-6 w-6 text-accent mt-1 mr-4" />
+                  <div>
+                    <p className="font-medium text-foreground">Telefon</p>
+                    <a href="tel:+4915122311254" className="text-accent hover:text-accent-hover">
+                      +49 151 22311254
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <MapPin className="h-6 w-6 text-accent mt-1 mr-4" />
+                  <div>
+                    <p className="font-medium text-foreground">Adresse</p>
+                    <p className="text-secondary">
+                      beaible Consulting<br />
+                      Christian Klose<br />
+                      Bärenweiler 1<br />
+                      88353 Kißlegg
+                    </p>
+                  </div>
+                </div>
               </div>
-              
-              <div className="text-center">
-                <h3 className="text-xl font-bold text-white mb-2">{member.name}</h3>
-                <p className="text-cyan-400 font-semibold mb-2">{member.role}</p>
-                <p className="text-gray-300 text-sm mb-4">{member.expertise}</p>
-                
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {member.skills.map((skill, skillIndex) => (
-                    <span
-                      key={skillIndex}
-                      className="px-3 py-1 bg-slate-600/50 text-cyan-300 text-xs rounded-full border border-cyan-400/30"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-                
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-6 px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"
+
+              <div className="mt-8 p-6 bg-accent/10 rounded-xl border border-border">
+                <h4 className="font-semibold text-foreground mb-2">
+                  KI-Sprechstunde buchen
+                </h4>
+                <p className="text-secondary mb-4">
+                  Vereinbare einen persönlichen Termin in Bärenweiler oder online.
+                </p>
+                <a 
+                  href="https://zeeg.me/cklose"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-accent text-white font-medium rounded-full hover:bg-accent-hover transition-colors"
                 >
-                  Termin buchen
-                </motion.button>
+                  Termin vereinbaren
+                  <Calendar className="ml-2 h-4 w-4" />
+                </a>
               </div>
             </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
 
-// Process/Methodology Section
-function ProcessSection() {
-  const steps = [
-    {
-      number: "01",
-      title: "Analyse & Assessment",
-      description: "Umfassende Bewertung Ihrer aktuellen Situation und KI-Potenziale",
-      icon: <Target className="w-8 h-8" />,
-      duration: "2-4 Wochen"
-    },
-    {
-      number: "02",
-      title: "Strategieentwicklung",
-      description: "Entwicklung einer maßgeschneiderten KI-Roadmap für Ihr Unternehmen",
-      icon: <Layers className="w-8 h-8" />,
-      duration: "3-6 Wochen"
-    },
-    {
-      number: "03",
-      title: "Implementierung",
-      description: "Schrittweise Umsetzung mit begleitendem Change Management",
-      icon: <Rocket className="w-8 h-8" />,
-      duration: "3-12 Monate"
-    },
-    {
-      number: "04",
-      title: "Optimierung",
-      description: "Kontinuierliche Verbesserung und Skalierung der KI-Lösungen",
-      icon: <BarChart3 className="w-8 h-8" />,
-      duration: "Fortlaufend"
-    }
-  ]
-
-  return (
-    <section id="vorgehen" className="py-20 bg-gradient-to-br from-slate-800 to-slate-900 relative overflow-hidden">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Unser bewährtes <span className="text-cyan-400">Vorgehen</span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Ein strukturierter Ansatz für Ihre erfolgreiche KI-Transformation
-          </p>
-        </motion.div>
-
-        <div className="relative">
-          {/* Connection Lines */}
-          <div className="hidden lg:block absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 opacity-30" />
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="relative group"
-              >
-                {/* Step Number Circle */}
-                <div className="relative mx-auto w-16 h-16 mb-6">
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform duration-300">
-                    {step.number}
-                  </div>
-                  <div className="absolute inset-0 bg-cyan-400/30 rounded-full blur-lg group-hover:scale-125 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-card rounded-2xl p-8 border border-border"
+            >
+              <h3 className="text-2xl font-bold text-foreground mb-6">
+                Schreib mir eine Nachricht
+              </h3>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot field - hidden from users */}
+                <input
+                  type="text"
+                  name="honeypot"
+                  value={formData.honeypot}
+                  onChange={handleChange}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+                
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-secondary mb-1">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-foreground"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-secondary mb-1">
+                    E-Mail *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-foreground"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="company" className="block text-sm font-medium text-secondary mb-1">
+                    Unternehmen
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-foreground"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-secondary mb-1">
+                    Nachricht *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent bg-background text-foreground"
+                    required
+                  />
                 </div>
                 
-                {/* Content Card */}
-                <div className="bg-slate-700/50 backdrop-blur-sm border border-slate-600/30 rounded-2xl p-6 group-hover:border-cyan-400/40 transition-all duration-300">
-                  <div className="text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {step.icon}
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-                  <p className="text-gray-300 mb-4 leading-relaxed">{step.description}</p>
-                  
-                  <div className="flex items-center text-sm">
-                    <Clock className="w-4 h-4 text-cyan-400 mr-2" />
-                    <span className="text-cyan-300">{step.duration}</span>
-                  </div>
+                {/* Turnstile Captcha */}
+                <div className="space-y-2">
+                  <label className="text-sm text-secondary">
+                    Sicherheitsverifizierung *
+                  </label>
+                  <TurnstileWidget
+                    onVerify={setTurnstileToken}
+                    onError={() => {
+                      setTurnstileToken('')
+                      showToast('Captcha-Fehler. Bitte versuchen Sie es erneut.', 'error')
+                    }}
+                    onExpire={() => {
+                      setTurnstileToken('')
+                      showToast('Captcha abgelaufen. Bitte erneuern Sie die Verifizierung.', 'error')
+                    }}
+                  />
                 </div>
-              </motion.div>
-            ))}
+                
+                <button
+                  type="submit"
+                  disabled={isSubmitting || !turnstileToken}
+                  className="w-full px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  title={!turnstileToken ? 'Bitte vervollständigen Sie die Sicherheitsverifizierung' : ''}
+                >
+                  {isSubmitting ? 'Wird gesendet...' : 'Nachricht senden'}
+                </button>
+              </form>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
+
+// Footer Component
+function Footer() {
+  return (
+    <footer className="bg-card text-card-foreground py-12 border-t border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-3 gap-8">
+          <div>
+            <div className="flex items-center mb-4">
+              <Logo width={160} height={50} className="h-10" />
+            </div>
+            <p className="text-secondary">
+              KI-Beratung mit Herz und Verstand aus dem Allgäu
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-4">Kontakt</h3>
+            <address className="text-secondary not-italic">
+              Christian Klose<br />
+              Bärenweiler 1<br />
+              88353 Kißlegg<br />
+              <a href="mailto:C.Klose@beaible.de" className="hover:text-accent">
+                C.Klose@beaible.de
+              </a>
+            </address>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-4">Social Media</h3>
+            <div className="flex space-x-4">
+              <a 
+                href="https://www.linkedin.com/in/christian-klose-616154242/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-secondary hover:text-accent transition-colors"
+              >
+                <Linkedin className="h-6 w-6" />
+              </a>
+              <a 
+                href="https://www.instagram.com/beaible_consulting/?igsh=NzR0M3pnMmV2YnBu#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-secondary hover:text-accent transition-colors"
+              >
+                <Instagram className="h-6 w-6" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-secondary text-sm">
+            © 2024 beaible Consulting. Alle Rechte vorbehalten.
+          </p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <Link href="/impressum" className="text-secondary hover:text-accent text-sm">
+              Impressum
+            </Link>
+            <Link href="/datenschutz" className="text-secondary hover:text-accent text-sm">
+              Datenschutz
+            </Link>
           </div>
         </div>
       </div>
-    </section>
+    </footer>
   )
 }
 
-// CTA Section
-function CTASection() {
-  return (
-    <section id="kontakt" className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
-      <ParticleField />
-      
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Bereit für die <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Zukunft</span>?
-          </h2>
-          
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Starten Sie jetzt Ihre KI-Transformation mit einer kostenlosen Potenzial-Analyse
-          </p>
-          
-          <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-12">
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(8, 145, 178, 0.5)" }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative flex items-center gap-2">
-                Kostenlose Beratung
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </motion.button>
-            
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-semibold rounded-full hover:bg-cyan-400/10 transition-colors duration-300"
-            >
-              Demo anfordern
-            </motion.button>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
-            <div className="flex flex-col items-center">
-              <Shield className="w-8 h-8 text-cyan-400 mb-2" />
-              <span className="text-white font-semibold">100% Kostenlos</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <Clock className="w-8 h-8 text-cyan-400 mb-2" />
-              <span className="text-white font-semibold">Schneller Start</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <Users className="w-8 h-8 text-cyan-400 mb-2" />
-              <span className="text-white font-semibold">Persönliche Betreuung</span>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-// Main Website Component
-function MainWebsite() {
-  return (
-    <main className="min-h-screen bg-slate-900">
-      <Navigation />
-      <HeroSection />
-      <ProblemAnalysis />
-      <SolutionsSection />
-      <TeamSection />
-      <ProcessSection />
-      <CTASection />
-    </main>
-  )
-}
-
-// Main App Component with Loader
+// Main App Component
 export default function Home() {
-  const [showLoader, setShowLoader] = useState(true)
-  const [isReady, setIsReady] = useState(false)
+  const [showLoader, setShowLoader] = useState(false)
 
-  // Preload wichtige Assets
   useEffect(() => {
-    const preloadAssets = async () => {
-      // Preload Logo
-      const logoImg = new globalThis.Image()
-      logoImg.src = '/logo.png'
-      
-      // Warten bis Assets geladen sind
-      await new Promise(resolve => {
-        logoImg.onload = resolve
-        logoImg.onerror = resolve // Auch bei Fehlern fortfahren
-      })
-      
-      setIsReady(true)
-    }
+    // Nur beim ersten Besuch oder wenn explizit gewünscht
+    const hasSeenLoader = sessionStorage.getItem('beaible-loader-seen')
+    const forceLoader = new URLSearchParams(window.location.search).get('intro')
     
-    preloadAssets()
+    if (!hasSeenLoader || forceLoader === 'true') {
+      setShowLoader(true)
+      sessionStorage.setItem('beaible-loader-seen', 'true')
+    }
   }, [])
 
   const handleLoaderComplete = () => {
@@ -797,36 +957,28 @@ export default function Home() {
 
   return (
     <>
-      <AnimatePresence mode="wait">
-        {showLoader && isReady && (
+      <AnimatePresence>
+        {showLoader && (
           <LoaderSequence onComplete={handleLoaderComplete} />
         )}
       </AnimatePresence>
-      
-      <AnimatePresence>
-        {!showLoader && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ 
-              duration: 1.2, 
-              ease: [0.25, 0.46, 0.45, 0.94]
-            }}
-          >
-            <MainWebsite />
-          </motion.div>
-        )}
-      </AnimatePresence>
-      
-      {/* Fallback für langsame Verbindungen */}
-      {!isReady && (
-        <div className="fixed inset-0 bg-slate-900 flex items-center justify-center z-50">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            className="w-12 h-12 border-4 border-cyan-400 border-t-transparent rounded-full"
-          />
-        </div>
+
+      {!showLoader && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Navigation />
+          <HeroSection />
+          <PortfolioOverview />
+          <KIBeratungSection />
+          <ZusatzangeboteSection />
+          <KILandSection />
+          <AboutSection />
+          <ContactSection />
+          <Footer />
+        </motion.div>
       )}
     </>
   )
