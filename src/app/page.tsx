@@ -12,6 +12,8 @@ import { useToast } from '@/hooks/useToast'
 import { TurnstileWidget } from '@/components/ui/Turnstile'
 import { Navigation } from '@/components/Navigation'
 import { LocalBusinessSchema, PersonSchema, WebsiteSchema } from '@/components/seo/StructuredData'
+import { ImageGallery } from '@/components/ui/ImageGallery'
+import { GalleryImage } from '@/hooks/useImageGallery'
 
 // Dynamic import für bessere Performance
 const LoaderSequence = dynamic(() => import('../components/LoaderSequence'), {
@@ -366,6 +368,81 @@ function ZusatzangeboteSection() {
 
 // KI-Beratung auf dem Land Section
 function KILandSection() {
+  const galleryImages: GalleryImage[] = [
+    {
+      src: '/baerenweiler-oben.png',
+      alt: 'Bärenweiler von oben - Zukunftsort im Allgäu',
+      title: 'Bärenweiler von oben',
+      description: 'Der idyllische Zukunftsort im Herzen des Allgäus, wo Tradition auf Innovation trifft.',
+      width: 800,
+      height: 500
+    },
+    {
+      src: '/office-exterior.jpg',
+      alt: 'Bürogebäude außen',
+      title: 'Büro unter dem Heustadel',
+      description: 'Moderne KI-Beratung in historischem Ambiente.',
+      width: 400,
+      height: 300
+    },
+    {
+      src: '/workspace.jpg',
+      alt: 'Arbeitsplatz und Büroausstattung',
+      title: 'Moderner Arbeitsplatz',
+      description: 'Hochmoderne Technik für innovative KI-Lösungen.',
+      width: 400,
+      height: 300
+    },
+    {
+      src: '/office-interior-temp.jpg',
+      alt: 'Büro innen (wird noch ersetzt)',
+      title: 'Beratungsraum',
+      description: 'Persönliche Gespräche in entspannter Atmosphäre.',
+      width: 400,
+      height: 300
+    },
+    {
+      src: '/gallery-1035.jpg',
+      alt: 'Weitere Impressionen aus Bärenweiler',
+      title: 'Bärenweiler Ambiente',
+      description: 'Einblicke in die einzigartige Atmosphäre des Zukunftsorts.',
+      width: 400,
+      height: 300
+    },
+    {
+      src: '/gallery-1036.jpg',
+      alt: 'Arbeitsumgebung und Details',
+      title: 'Arbeitsdetails',
+      description: 'Die perfekte Umgebung für kreative KI-Lösungen.',
+      width: 400,
+      height: 300
+    },
+    {
+      src: '/gallery-1065.jpg',
+      alt: 'Büroausstattung und Technik',
+      title: 'Technische Ausstattung',
+      description: 'Moderne Technologie für professionelle Beratung.',
+      width: 400,
+      height: 300
+    },
+    {
+      src: '/gallery-9529.jpg',
+      alt: 'Bärenweiler Umgebung',
+      title: 'Ländliche Idylle',
+      description: 'Die inspirierenden Landschaften rund um das Büro.',
+      width: 400,
+      height: 300
+    },
+    {
+      src: '/gallery-9549.jpg',
+      alt: 'Weitere Eindrücke vom Standort',
+      title: 'Standort-Impressionen',
+      description: 'Wo Innovation auf Tradition trifft - weitere Einblicke.',
+      width: 400,
+      height: 300
+    }
+  ]
+
   return (
     <section id="land" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -429,31 +506,7 @@ function KILandSection() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="grid grid-cols-2 gap-4">
-              <Image
-                src="/heustadel-1.jpg"
-                alt="Heustadel Bärenweiler"
-                width={300}
-                height={400}
-                className="rounded-2xl shadow-lg object-cover h-full"
-              />
-              <div className="space-y-4">
-                <Image
-                  src="/buero-1.jpg"
-                  alt="Büro unter dem Heustadel"
-                  width={300}
-                  height={190}
-                  className="rounded-2xl shadow-lg object-cover"
-                />
-                <Image
-                  src="/arbeitsplatz-1.jpg"
-                  alt="Arbeitsplatz"
-                  width={300}
-                  height={190}
-                  className="rounded-2xl shadow-lg object-cover"
-                />
-              </div>
-            </div>
+            <ImageGallery images={galleryImages} />
           </motion.div>
         </div>
       </div>

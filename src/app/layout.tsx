@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { getThemeScript } from "@/lib/theme-script";
 import { Providers } from "@/components/Providers";
+import { AIGeneratedBadge } from "@/components/ui/AIGeneratedBadge";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -88,6 +89,7 @@ export default function RootLayout({
             Zum Hauptinhalt springen
           </a>
           {children}
+          <AIGeneratedBadge />
         </Providers>
       </body>
     </html>
