@@ -11,6 +11,7 @@ import { Toast } from '@/components/ui/Toast'
 import { useToast } from '@/hooks/useToast'
 import { TurnstileWidget } from '@/components/ui/Turnstile'
 import { Navigation } from '@/components/Navigation'
+import { LocalBusinessSchema, PersonSchema, WebsiteSchema } from '@/components/seo/StructuredData'
 
 // Dynamic import für bessere Performance
 const LoaderSequence = dynamic(() => import('../components/LoaderSequence'), {
@@ -22,7 +23,7 @@ const LoaderSequence = dynamic(() => import('../components/LoaderSequence'), {
 function HeroSection() {
   return (
     <section id="home" className="relative min-h-screen flex items-center bg-background pt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-0">
+      <div id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-0">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -38,11 +39,11 @@ function HeroSection() {
               der Technologie und Menschlichkeit verbindet.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#beratung" className="inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-full hover:bg-accent-hover transition-colors group">
+              <a href="#beratung" className="inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-full hover:bg-accent-hover transition-colors group" aria-label="Zu den Beratungsleistungen navigieren">
                 Jetzt KI-Ready werden
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </a>
-              <a href="#contact" className="inline-flex items-center justify-center px-6 py-3 border-2 border-accent text-accent font-medium rounded-full hover:bg-accent hover:text-white transition-colors">
+              <a href="#contact" className="inline-flex items-center justify-center px-6 py-3 border-2 border-accent text-accent font-medium rounded-full hover:bg-accent hover:text-white transition-colors" aria-label="Kontaktformular für Erstgespräch öffnen">
                 Erstgespräch buchen
               </a>
             </div>
@@ -58,12 +59,13 @@ function HeroSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-hover/20 rounded-3xl blur-3xl"></div>
               <Image
                 src="/chris-klose.jpg"
-                alt="Christian Klose - beaible Consulting"
+                alt="Christian Klose - KI-Berater und Geschäftsführer von beaible Consulting"
                 width={800}
                 height={1000}
                 className="relative rounded-3xl shadow-2xl w-full h-auto"
                 priority
                 quality={95}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
           </motion.div>
@@ -112,7 +114,7 @@ function PortfolioOverview() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4" id="beratung">
             Mein Portfolio im Überblick
           </h2>
           <p className="text-xl text-secondary max-w-3xl mx-auto">
@@ -132,8 +134,9 @@ function PortfolioOverview() {
               <Link
                 href={service.href}
                 className="block bg-card rounded-2xl p-6 hover:shadow-lg transition-all border border-border hover:scale-105 group"
+                aria-label={`${service.title} - ${service.description}`}
               >
-                <div className="text-accent mb-4 group-hover:scale-110 transition-transform">{service.icon}</div>
+                <div className="text-accent mb-4 group-hover:scale-110 transition-transform" role="img" aria-label={`${service.title} Icon`}>{service.icon}</div>
                 <h3 className="text-xl font-semibold text-card-foreground mb-2">{service.title}</h3>
                 <p className="text-secondary">{service.description}</p>
                 <div className="flex items-center text-accent mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -708,8 +711,8 @@ function ContactSection() {
                   <Mail className="h-6 w-6 text-accent mt-1 mr-4" />
                   <div>
                     <p className="font-medium text-foreground">E-Mail</p>
-                    <a href="mailto:C.Klose@beaible.de" className="text-accent hover:text-accent-hover">
-                      C.Klose@beaible.de
+                    <a href="mailto:c.klose@beaible.de" className="text-accent hover:text-accent-hover">
+                      c.klose@beaible.de
                     </a>
                   </div>
                 </div>
@@ -889,8 +892,8 @@ function Footer() {
               Christian Klose<br />
               Bärenweiler 1<br />
               88353 Kißlegg<br />
-              <a href="mailto:C.Klose@beaible.de" className="hover:text-accent">
-                C.Klose@beaible.de
+              <a href="mailto:c.klose@beaible.de" className="hover:text-accent">
+                c.klose@beaible.de
               </a>
             </address>
           </div>
@@ -929,6 +932,9 @@ function Footer() {
             <Link href="/datenschutz" className="text-secondary hover:text-accent text-sm">
               Datenschutz
             </Link>
+            <Link href="/cookie-einstellungen" className="text-secondary hover:text-accent text-sm">
+              Cookie-Einstellungen
+            </Link>
           </div>
         </div>
       </div>
@@ -957,6 +963,11 @@ export default function Home() {
 
   return (
     <>
+      {/* SEO: Structured Data */}
+      <LocalBusinessSchema />
+      <PersonSchema />
+      <WebsiteSchema />
+      
       <AnimatePresence>
         {showLoader && (
           <LoaderSequence onComplete={handleLoaderComplete} />

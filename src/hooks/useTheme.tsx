@@ -8,6 +8,7 @@ interface ThemeProviderContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   effectiveTheme: 'light' | 'dark';
+  canPersist: boolean;
 }
 
 const ThemeProviderContext = createContext<ThemeProviderContextType | undefined>(undefined);
@@ -24,22 +25,43 @@ interface ThemeProviderProps {
   children: ReactNode;
   defaultTheme?: Theme;
   storageKey?: string;
+  functionalConsent?: boolean;
 }
 
 export function ThemeProvider({ 
   children, 
   defaultTheme = 'system',
-  storageKey = 'beaible-theme' 
+  storageKey = 'beaible-theme',
+  functionalConsent = false
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
   const [effectiveTheme, setEffectiveTheme] = useState<'light' | 'dark'>('light');
 
+  // Load theme from localStorage only if functional consent is given
   useEffect(() => {
-    const storedTheme = localStorage.getItem(storageKey) as Theme;
-    if (storedTheme) {
-      setTheme(storedTheme);
+    if (functionalConsent) {
+      try {
+        const storedTheme = localStorage.getItem(storageKey) as Theme;
+        if (storedTheme && ['light', 'dark', 'system'].includes(storedTheme)) {
+          setTheme(storedTheme);
+        }
+      } catch (error) {
+        console.warn('Error reading theme from localStorage:', error);
+      }
     }
-  }, [storageKey]);
+  }, [storageKey, functionalConsent]);
+
+  // Clear stored theme if consent is withdrawn
+  useEffect(() => {
+    if (!functionalConsent) {
+      try {
+        localStorage.removeItem(storageKey);
+        setTheme(defaultTheme); // Reset to default
+      } catch (error) {
+        console.warn('Error removing theme from localStorage:', error);
+      }
+    }
+  }, [functionalConsent, storageKey, defaultTheme]);
 
   useEffect(() => {
     const updateEffectiveTheme = () => {
@@ -75,14 +97,23 @@ export function ThemeProvider({
   }, [effectiveTheme]);
 
   const handleSetTheme = (newTheme: Theme) => {
-    localStorage.setItem(storageKey, newTheme);
     setTheme(newTheme);
+    
+    // Only persist to localStorage if functional consent is given
+    if (functionalConsent) {
+      try {
+        localStorage.setItem(storageKey, newTheme);
+      } catch (error) {
+        console.warn('Error saving theme to localStorage:', error);
+      }
+    }
   };
 
   const value: ThemeProviderContextType = {
     theme,
     setTheme: handleSetTheme,
     effectiveTheme,
+    canPersist: functionalConsent,
   };
 
   return (

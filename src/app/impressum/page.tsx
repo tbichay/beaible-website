@@ -1,13 +1,16 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { Navigation } from '@/components/Navigation'
 
 export default function Impressum() {
   return (
-    <main className="min-h-screen bg-white px-4 py-16 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <Link 
+    <>
+      <Navigation />
+      <main className="min-h-screen bg-background px-4 py-16 sm:px-6 lg:px-8 pt-24">
+        <div className="max-w-4xl mx-auto">
+          <Link 
           href="/" 
-          className="inline-flex items-center text-green-600 hover:text-green-700 mb-8"
+          className="inline-flex items-center text-accent hover:text-accent-hover mb-8"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Zurück zur Startseite
@@ -30,8 +33,9 @@ export default function Impressum() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-foreground mb-4">Kontakt:</h2>
             <p>
-              E-Mail: <a href="mailto:C.Klose@beaible.de" className="text-green-600 hover:text-green-700">C.Klose@beaible.de</a><br />
-              Web: <a href="https://www.beaible-consulting.de" className="text-green-600 hover:text-green-700">www.beaible-consulting.de</a>
+              Telefon: <a href="tel:+4915122311254" className="text-accent hover:text-accent-hover">+49 151 22311254</a><br />
+              E-Mail: <a href="mailto:c.klose@beaible.de" className="text-accent hover:text-accent-hover">c.klose@beaible.de</a><br />
+              Web: <a href="https://www.beaible-consulting.de" className="text-accent hover:text-accent-hover">www.beaible-consulting.de</a>
             </p>
           </section>
 
@@ -77,7 +81,7 @@ export default function Impressum() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-foreground mb-4">Streitschlichtung</h2>
             <p>
-              Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-700">https://ec.europa.eu/consumers/odr</a>.
+              Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-hover">https://ec.europa.eu/consumers/odr</a>.
             </p>
             <p>
               Unsere E-Mail-Adresse finden Sie oben im Impressum.
@@ -89,5 +93,6 @@ export default function Impressum() {
         </div>
       </div>
     </main>
+    </>
   )
 }

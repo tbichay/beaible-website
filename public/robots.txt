@@ -1,0 +1,53 @@
+# Robots.txt für beaible-consulting.de
+# KI-Beratung für mittelständische Unternehmen im Allgäu
+
+User-agent: *
+Allow: /
+
+# SEO-optimierte Sitemap
+Sitemap: https://beaible-consulting.de/sitemap.xml
+
+# Cookie-Einstellungsseite nicht indexieren
+Disallow: /cookie-einstellungen
+
+# Admin/API-Bereiche ausschließen
+Disallow: /api/
+Disallow: /_next/
+Disallow: /.well-known/
+
+# Spezielle Crawler-Regeln
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Archivierungs-Bots erlauben
+User-agent: ia_archiver
+Allow: /
+
+# Google-spezifische Optimierungen
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing-spezifische Optimierungen  
+User-agent: bingbot
+Allow: /
+Crawl-delay: 1
+
+# Lokale SEO für Allgäu-relevante Suchmaschinen
+User-agent: Slurp
+Allow: /
+
+# Host-Information für bessere SEO
+Host: beaible-consulting.de

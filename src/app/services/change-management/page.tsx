@@ -2,8 +2,31 @@ import { ServiceLayout } from '@/components/ServiceLayout'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Change Management | beaible Consulting',
-  description: 'Begleitung bei der Integration von KI in Ihre Unternehmenskultur. Erfolgreiche Transformation durch strukturiertes Change Management.',
+  title: 'Change Management | beaible Consulting - KI-Transformation erfolgreich gestalten',
+  description: 'Begleitung bei der Integration von KI in Ihre Unternehmenskultur. Erfolgreiche Transformation durch strukturiertes Change Management im Allgäu.',
+  keywords: 'Change Management, KI Transformation, Unternehmenskultur, Führungskräfte Coaching, Mitarbeiter Schulung, Allgäu',
+  openGraph: {
+    title: 'Change Management | beaible Consulting',
+    description: 'Erfolgreiche KI-Integration in Ihre Unternehmenskultur mit strukturiertem Change Management',
+    url: 'https://beaible-consulting.de/services/change-management',
+    images: [
+      {
+        url: 'https://beaible-consulting.de/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Change Management für KI-Transformation',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Change Management | beaible Consulting',
+    description: 'Erfolgreiche KI-Integration in Ihre Unternehmenskultur',
+    images: ['https://beaible-consulting.de/og-image.jpg'],
+  },
+  alternates: {
+    canonical: 'https://beaible-consulting.de/services/change-management'
+  }
 }
 
 export default function ChangeManagementPage() {

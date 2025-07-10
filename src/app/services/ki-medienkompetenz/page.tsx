@@ -2,8 +2,31 @@ import { ServiceLayout } from '@/components/ServiceLayout'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'KI-Medienkompetenz | beaible Consulting',
-  description: 'Schulungen für den sicheren und effektiven Umgang mit KI-Tools. Befähigen Sie Ihr Team für die KI-Zukunft.',
+  title: 'KI-Medienkompetenz Schulungen | beaible Consulting - KI-Training für Teams',
+  description: 'Praxisorientierte KI-Schulungen für Unternehmen im Allgäu. Lernen Sie den sicheren Umgang mit ChatGPT & Co. Für mehr Produktivität und Innovation.',
+  keywords: 'KI Schulung, KI Training, ChatGPT Schulung, KI Medienkompetenz, KI Tools Unternehmen, Allgäu',
+  openGraph: {
+    title: 'KI-Medienkompetenz Schulungen | beaible Consulting',
+    description: 'Praxisorientierte KI-Schulungen für mehr Produktivität im Team',
+    url: 'https://beaible-consulting.de/services/ki-medienkompetenz',
+    images: [
+      {
+        url: 'https://beaible-consulting.de/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'KI-Medienkompetenz Schulungen für Unternehmen',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'KI-Medienkompetenz Schulungen | beaible Consulting',
+    description: 'Praxisorientierte KI-Schulungen für mehr Produktivität im Team',
+    images: ['https://beaible-consulting.de/og-image.jpg'],
+  },
+  alternates: {
+    canonical: 'https://beaible-consulting.de/services/ki-medienkompetenz'
+  }
 }
 
 export default function KIMediankompetenPage() {

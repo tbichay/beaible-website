@@ -1,14 +1,44 @@
 import { ServiceLayout } from '@/components/ServiceLayout'
+import { ServiceSchema } from '@/components/seo/StructuredData'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'KI-First-Audit | beaible Consulting',
-  description: 'Umfassende Analyse Ihrer aktuellen Prozesse und KI-Potenziale. Identifizieren Sie Chancen für KI-Integration in Ihrem Unternehmen.',
+  title: 'KI-First-Audit | beaible Consulting - Professionelle KI-Potenzialanalyse',
+  description: 'Umfassende Analyse Ihrer aktuellen Prozesse und KI-Potenziale. Identifizieren Sie Chancen für KI-Integration in Ihrem Unternehmen im Allgäu.',
+  keywords: 'KI Audit, KI Potenzial Analyse, Künstliche Intelligenz Beratung, KI Transformation, Allgäu',
+  openGraph: {
+    title: 'KI-First-Audit | beaible Consulting',
+    description: 'Professionelle Analyse Ihrer KI-Potenziale mit persönlicher Beratung im Allgäu',
+    url: 'https://beaible-consulting.de/services/ki-first-audit',
+    images: [
+      {
+        url: 'https://beaible-consulting.de/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'KI-First-Audit - Professionelle KI-Potenzialanalyse',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'KI-First-Audit | beaible Consulting',
+    description: 'Professionelle Analyse Ihrer KI-Potenziale mit persönlicher Beratung im Allgäu',
+    images: ['https://beaible-consulting.de/og-image.jpg'],
+  },
+  alternates: {
+    canonical: 'https://beaible-consulting.de/services/ki-first-audit'
+  }
 }
 
 export default function KIFirstAuditPage() {
   return (
-    <ServiceLayout
+    <>
+      <ServiceSchema 
+        name="KI-First-Audit"
+        description="Umfassende Analyse Ihrer aktuellen Prozesse und KI-Potenziale zur Identifikation von Chancen für KI-Integration"
+        url="https://beaible-consulting.de/services/ki-first-audit"
+      />
+      <ServiceLayout
       title="KI-First-Audit"
       subtitle="Der strategische Einstieg in Ihre KI-Transformation"
       description="Eine umfassende Analyse Ihrer aktuellen Geschäftsprozesse mit dem Fokus auf KI-Potenziale. Wir identifizieren konkrete Ansatzpunkte, wo Künstliche Intelligenz Ihr Unternehmen voranbringen kann."
@@ -58,5 +88,6 @@ export default function KIFirstAuditPage() {
         "3 Monate kostenloser E-Mail-Support"
       ]}
     />
+    </>
   )
 }

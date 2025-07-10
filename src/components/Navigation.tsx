@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Cookie } from 'lucide-react'
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { Logo } from '@/components/ui/Logo'
@@ -42,11 +42,29 @@ export function Navigation() {
                 </Link>
               ))}
             </div>
-            <ThemeToggle />
+            <div className="flex items-center space-x-2">
+              <Link
+                href="/cookie-einstellungen"
+                className="p-2 rounded-lg text-foreground hover:bg-muted transition-colors duration-200"
+                aria-label="Cookie-Einstellungen anpassen"
+                title="Cookie-Einstellungen"
+              >
+                <Cookie className="h-5 w-5" />
+              </Link>
+              <ThemeToggle />
+            </div>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
+            <Link
+              href="/cookie-einstellungen"
+              className="p-2 rounded-lg text-foreground hover:bg-muted transition-colors duration-200"
+              aria-label="Cookie-Einstellungen anpassen"
+              title="Cookie-Einstellungen"
+            >
+              <Cookie className="h-5 w-5" />
+            </Link>
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -78,6 +96,16 @@ export function Navigation() {
                   {item.name}
                 </Link>
               ))}
+              <Link
+                href="/cookie-einstellungen"
+                onClick={() => setIsOpen(false)}
+                className="text-foreground hover:text-accent block px-3 py-2 text-base font-medium border-t border-border mt-2 pt-4"
+              >
+                <div className="flex items-center">
+                  <Cookie className="h-4 w-4 mr-2" />
+                  Cookie-Einstellungen
+                </div>
+              </Link>
             </div>
           </motion.div>
         )}

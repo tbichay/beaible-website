@@ -1,13 +1,16 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { Navigation } from '@/components/Navigation'
 
 export default function Datenschutz() {
   return (
-    <main className="min-h-screen bg-white px-4 py-16 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <Link 
+    <>
+      <Navigation />
+      <main className="min-h-screen bg-background px-4 py-16 sm:px-6 lg:px-8 pt-24">
+        <div className="max-w-4xl mx-auto">
+          <Link 
           href="/" 
-          className="inline-flex items-center text-green-600 hover:text-green-700 mb-8"
+          className="inline-flex items-center text-accent hover:text-accent-hover mb-8"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Zurück zur Startseite
@@ -51,15 +54,19 @@ export default function Datenschutz() {
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-foreground mb-4">2. Hosting</h2>
+            
+            <h3 className="text-lg font-semibold text-foreground mb-2">Vercel Inc.</h3>
             <p>
-              Wir hosten die Inhalte unserer Website bei folgendem Anbieter:
-            </p>
-            <h3 className="text-lg font-semibold text-foreground mb-2 mt-4">Externes Hosting</h3>
-            <p>
-              Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters / der Hoster gespeichert. Hierbei kann es sich v. a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.
+              Diese Website wird von Vercel Inc. gehostet. Anbieter ist Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.
             </p>
             <p>
-              Das externe Hosting erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO).
+              Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern von Vercel gespeichert. Hierbei kann es sich v. a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.
+            </p>
+            <p>
+              Das Hosting erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO).
+            </p>
+            <p>
+              Vercel hat entsprechende Auftragsverarbeitungsverträge mit uns abgeschlossen. Weitere Informationen zum Datenschutz bei Vercel finden Sie unter: <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-hover">https://vercel.com/legal/privacy-policy</a>
             </p>
           </section>
 
@@ -80,7 +87,7 @@ export default function Datenschutz() {
               beaible Consulting<br />
               Bärenweiler 1<br />
               88353 Kißlegg<br />
-              E-Mail: C.Klose@beaible.de
+              E-Mail: c.klose@beaible.de
             </p>
             <p>
               Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.
@@ -145,29 +152,88 @@ export default function Datenschutz() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-foreground mb-4">5. Plugins und Tools</h2>
+            <h2 className="text-xl font-semibold text-foreground mb-4">5. Cookies und lokale Speicherung</h2>
+            
+            <h3 className="text-lg font-semibold text-foreground mb-2">Cookie-Einstellungen</h3>
+            <p>
+              Diese Website verwendet verschiedene Arten von Cookies und lokale Speichertechnologien. Sie können Ihre Cookie-Präferenzen jederzeit in unseren{' '}
+              <a href="/cookie-einstellungen" className="text-accent hover:text-accent-hover">Cookie-Einstellungen</a> verwalten.
+            </p>
+            
+            <h4 className="font-medium text-foreground mt-4 mb-2">Notwendige Cookies</h4>
+            <p className="text-sm text-secondary">
+              Diese Cookies sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert werden.
+            </p>
+            
+            <h4 className="font-medium text-foreground mt-4 mb-2">Funktionale Cookies</h4>
+            <p className="text-sm text-secondary">
+              Speichern Ihre Präferenzen wie Theme-Einstellungen (Hell/Dunkel-Modus). Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).
+            </p>
+            
+            <h3 className="text-lg font-semibold text-foreground mb-2 mt-6">Cloudflare Turnstile</h3>
+            <p>
+              Zum Schutz vor Spam und Missbrauch verwenden wir Cloudflare Turnstile. Anbieter ist Cloudflare Inc., 101 Townsend St., San Francisco, CA 94107, USA.
+            </p>
+            <p>
+              Turnstile analysiert das Verhalten von Website-Besuchern, um zwischen Menschen und Bots zu unterscheiden. Dabei werden technische Informationen wie IP-Adresse, Browser-Informationen und Interaktionsmuster verarbeitet.
+            </p>
+            <p>
+              Die Datenverarbeitung erfolgt auf Grundlage unseres berechtigten Interesses am Schutz vor Spam und Missbrauch (Art. 6 Abs. 1 lit. f DSGVO).
+            </p>
+            <p>
+              Weitere Informationen zum Datenschutz bei Cloudflare finden Sie unter:{' '}
+              <a href="https://www.cloudflare.com/privacy/" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-hover">
+                https://www.cloudflare.com/privacy/
+              </a>
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-xl font-semibold text-foreground mb-4">6. E-Mail-Versand</h2>
+            
+            <h3 className="text-lg font-semibold text-foreground mb-2">SMTP-Service (Migadu)</h3>
+            <p>
+              Für den Versand von E-Mails verwenden wir den Service von Migadu. Anbieter ist Migadu Email Service, Route de Chêne 21bis, 1208 Genf, Schweiz.
+            </p>
+            <p>
+              Wenn Sie unser Kontaktformular verwenden, werden Ihre Daten über den SMTP-Service von Migadu versendet. Dabei werden folgende Daten verarbeitet: Name, E-Mail-Adresse, Unternehmen, Nachrichteninhalt sowie technische Daten wie IP-Adresse und Zeitstempel.
+            </p>
+            <p>
+              Die Verarbeitung erfolgt zur Bearbeitung Ihrer Anfrage (Art. 6 Abs. 1 lit. b DSGVO) bzw. aufgrund unseres berechtigten Interesses an der effektiven Bearbeitung von Anfragen (Art. 6 Abs. 1 lit. f DSGVO).
+            </p>
+            <p>
+              Wir haben mit Migadu einen Auftragsverarbeitungsvertrag abgeschlossen. Die Daten werden nach Bearbeitung Ihrer Anfrage gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-xl font-semibold text-foreground mb-4">7. Plugins und Tools</h2>
             
             <h3 className="text-lg font-semibold text-foreground mb-2">Google Fonts (lokales Hosting)</h3>
             <p>
               Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google bereitgestellt werden. Die Google Fonts sind lokal installiert. Eine Verbindung zu Servern von Google findet dabei nicht statt.
             </p>
 
-            <h3 className="text-lg font-semibold text-foreground mb-2 mt-4">Calendly</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-2 mt-4">Zeeg.me Terminbuchung</h3>
             <p>
-              Für die Terminbuchung nutzen wir den Dienst Calendly. Anbieter ist Calendly LLC, 3423 Piedmont Road NE, Atlanta, GA 30305, USA.
+              Für die Terminbuchung nutzen wir den Dienst Zeeg.me. Anbieter ist Zeeg ApS, Dronningens Tværgade 30, 1302 Kopenhagen, Dänemark.
             </p>
             <p>
-              Wenn Sie einen Termin über Calendly buchen, werden die von Ihnen eingegebenen Daten (z.B. Name, E-Mail-Adresse, Telefonnummer) an Calendly übertragen und dort gespeichert. Calendly nutzt diese Daten zur Terminverwaltung und zur Kommunikation mit Ihnen bezüglich des gebuchten Termins.
+              Wenn Sie einen Termin über Zeeg.me buchen, werden die von Ihnen eingegebenen Daten (z.B. Name, E-Mail-Adresse, Telefonnummer) an Zeeg.me übertragen und dort gespeichert. Zeeg.me nutzt diese Daten zur Terminverwaltung und zur Kommunikation mit Ihnen bezüglich des gebuchten Termins.
             </p>
             <p>
               Die Datenverarbeitung erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Sie können diese Einwilligung jederzeit widerrufen, indem Sie den gebuchten Termin stornieren oder uns kontaktieren.
             </p>
             <p>
-              Weitere Informationen zum Datenschutz bei Zeeg.me finden Sie unter: <a href="https://zeeg.me/privacy" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-hover">https://zeeg.me/privacy</a>
+              Weitere Informationen zum Datenschutz bei Zeeg.me finden Sie unter:{' '}
+              <a href="https://zeeg.me/privacy" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-hover">
+                https://zeeg.me/privacy
+              </a>
             </p>
           </section>
         </div>
       </div>
     </main>
+    </>
   )
 }
