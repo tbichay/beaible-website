@@ -10,7 +10,6 @@ import { Logo } from '@/components/ui/Logo'
 import { Toast } from '@/components/ui/Toast'
 import { useToast } from '@/hooks/useToast'
 import { TurnstileWidget } from '@/components/ui/Turnstile'
-import { Navigation } from '@/components/Navigation'
 import { LocalBusinessSchema, PersonSchema, WebsiteSchema } from '@/components/seo/StructuredData'
 import { ImageGallery } from '@/components/ui/ImageGallery'
 import { GalleryImage } from '@/hooks/useImageGallery'
@@ -69,6 +68,93 @@ function HeroSection() {
                 quality={95}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Welcome Section
+function WelcomeSection() {
+  return (
+    <section className="py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Willkommen bei beaible
+          </h2>
+          <p className="text-xl text-accent font-medium mb-6">
+            Beratung für digitale Transformation & Künstliche Intelligenz
+          </p>
+          <p className="text-lg text-secondary max-w-2xl mx-auto">
+            Komplexität meistern. Wandel gestalten. Zukunft sichern.
+          </p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="prose prose-lg text-secondary">
+              <p className="mb-6">
+                Sie stehen vor der Herausforderung, Ihr Unternehmen fit für die digitale Zukunft zu
+                machen? Dann sind Sie hier genau richtig.
+              </p>
+              <p className="mb-6">
+                Ich unterstütze Unternehmen dabei, Digitalisierung und Künstliche Intelligenz nicht
+                nur zu verstehen, sondern strategisch und nachhaltig einzusetzen – mit klarem
+                Fokus auf den konkreten Nutzen für Ihr Geschäft.
+              </p>
+              <p className="mb-6">
+                Als Redakteur und Berater mit über 30 Jahren Erfahrung an der Schnittstelle von
+                Redaktion, Digitalisierung und Führung (über ein Jahrzehnt auch bei der
+                &ldquo;Schwäbischen Zeitung&rdquo;) bin ich mehr als ein externer Impulsgeber:
+              </p>
+              <p className="mb-6 text-foreground font-medium">
+                Ich bin Ihr strategischer Sparringspartner mit tiefem Verständnis für Prozesse,
+                Technologien und vor allem Menschen.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div className="prose prose-lg text-secondary">
+              <p className="mb-6">
+                Ob digitale Strategien, KI-Integration, effizientere Abläufe oder Change-
+                Management und -Kommunikation – ich analysiere präzise, formuliere klar und
+                begleite Sie von der Idee bis zur erfolgreichen Umsetzung.
+              </p>
+              
+              <div className="bg-accent/10 rounded-xl p-6 mb-6 border border-accent/20">
+                <p className="text-foreground font-medium mb-2">
+                  Aktuell vertiefe ich meine Expertise als zertifizierter AI Expert (Abschluss im
+                  Oktober 2025) an der &ldquo;Digital Business University Berlin For Applied Sciences
+                  (DBU)&rdquo;, um Sie auch bei technologisch anspruchsvollen Vorhaben kompetent zu
+                  unterstützen.
+                </p>
+              </div>
+              
+              <p className="text-foreground font-medium">
+                Ich spreche die Sprache von Geschäftsführung, IT und Mitarbeitenden. Ich denke
+                unternehmerisch, handle lösungsorientiert und liefere Ergebnisse, die spürbar
+                entlasten und echten Mehrwert schaffen.
+              </p>
             </div>
           </motion.div>
         </div>
@@ -663,6 +749,23 @@ function AboutSection() {
             </div>
           </motion.div>
         </div>
+
+        {/* Mehr über mich Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-12 text-center"
+        >
+          <Link 
+            href="/ueber-mich"
+            className="inline-flex items-center px-8 py-4 bg-accent text-white font-medium rounded-full hover:bg-accent-hover transition-colors group"
+          >
+            Mehr über mich erfahren
+            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   )
@@ -1033,8 +1136,8 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <Navigation />
           <HeroSection />
+          <WelcomeSection />
           <PortfolioOverview />
           <KIBeratungSection />
           <ZusatzangeboteSection />

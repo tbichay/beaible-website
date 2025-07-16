@@ -4,6 +4,7 @@ import "./globals.css";
 import { getThemeScript } from "@/lib/theme-script";
 import { Providers } from "@/components/Providers";
 import { AIGeneratedBadge } from "@/components/ui/AIGeneratedBadge";
+import { Navigation } from "@/components/Navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -88,6 +89,7 @@ export default function RootLayout({
           <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent text-white px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-accent-hover">
             Zum Hauptinhalt springen
           </a>
+          <Navigation />
           {children}
           <AIGeneratedBadge />
         </Providers>

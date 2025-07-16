@@ -15,7 +15,7 @@ export function Navigation() {
     { name: 'KI-Beratung', href: '/#beratung' },
     { name: 'Zusatzangebote', href: '/#angebote' },
     { name: 'KI auf dem Land', href: '/#land' },
-    { name: 'Über mich', href: '/#about' },
+    { name: 'Über mich', href: '/ueber-mich' },
     { name: 'Kontakt', href: '/#contact' }
   ]
 

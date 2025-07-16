@@ -1,11 +1,9 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
-import { Navigation } from '@/components/Navigation'
 
 export default function Impressum() {
   return (
     <>
-      <Navigation />
       <main className="min-h-screen bg-background px-4 py-16 sm:px-6 lg:px-8 pt-24">
         <div className="max-w-4xl mx-auto">
           <Link 
