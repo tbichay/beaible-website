@@ -381,7 +381,7 @@ function MedienkompetenzSection() {
                   Im KI-Zeitalter verschwimmen Realität und Fiktion erst recht. Deep Fakes 
                   lassen zweifeln: War das wirklich? Wurde das tatsächlich gesagt? In dieser 
                   Welt, wo selbst unseren Augen nicht zu trauen ist, brauchen wir alle einen 
-                  &ldquo;KI- und Medien-Führerschein&rdquo;.
+                  "KI- und Medien-Führerschein".
                 </p>
               </div>
             </div>
@@ -485,7 +485,7 @@ function KIBeratungSection() {
       href: "/services/ki-medienkompetenz-foerdern"
     },
     {
-      title: "&ldquo;KI-Landarzt&rdquo;-Konzept",
+      title: "\"KI-Landarzt\"-Konzept",
       subtitle: "Persönliche Beratung vor Ort",
       features: [
         "Regelmäßige Sprechstunden im Allgäu",
@@ -975,7 +975,7 @@ function KILandSection() {
                   <MapPin className="h-8 w-8 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-foreground">Der &ldquo;KI-Landarzt&rdquo;</h3>
+                  <h3 className="text-2xl font-bold text-foreground">Der "KI-Landarzt"</h3>
                   <p className="text-green-600 font-medium">Erste Hilfe für Ihre Digitalisierung</p>
                 </div>
               </div>
@@ -983,7 +983,7 @@ function KILandSection() {
               <div className="space-y-4 mb-6">
                 <div className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" />
-                  <span className="text-secondary">&ldquo;Erste KI-Hilfe&rdquo; für Einsteiger:innen</span>
+                  <span className="text-secondary">"Erste KI-Hilfe" für Einsteiger:innen</span>
                 </div>
                 <div className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" />
@@ -1001,7 +1001,7 @@ function KILandSection() {
               
               <div className="text-center">
                 <p className="text-lg text-secondary mb-4">
-                  Wie ein Landarzt biete ich werktags eine KI-Sprechstunde in meiner &ldquo;KI-Praxis&rdquo; 
+                  Wie ein Landarzt biete ich werktags eine KI-Sprechstunde in meiner "KI-Praxis" 
                   in Bärenweiler an. Dabei höre ich zu, stelle unterstützende Fragen, kläre auf und helfe weiter.
                 </p>
                 <a 
