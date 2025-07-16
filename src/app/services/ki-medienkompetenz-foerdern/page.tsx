@@ -12,6 +12,10 @@ export default function KIMediankompetenzFoerdernPage() {
       title="KI-Medienkompetenz fördern"
       subtitle="Befähigung Ihres Teams für den KI-Alltag"
       description="Intensive Schulungsprogramme, die Ihre Mitarbeiter von KI-Anfängern zu kompetenten Anwendern entwickeln. Mit praktischen Übungen und echten Anwendungsfällen aus Ihrem Unternehmen."
+      heroImage={{
+        src: "/chris-medienkompetenz.jpg",
+        alt: "Christian Klose - KI-Medienkompetenz fördern"
+      }}
       
       features={[
         "Praktische Workshops zu KI-Tools",

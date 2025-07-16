@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Calendar, MapPin, Users, Lightbulb, Target, Brain, ExternalLink, Linkedin, Instagram, Award, BookOpen, Briefcase, Heart, Home } from 'lucide-react'
+import { ArrowRight, Calendar, MapPin, Users, Lightbulb, Target, Brain, ExternalLink, Linkedin, Instagram, Award, BookOpen, Briefcase, Home } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PersonSchema } from '@/components/seo/StructuredData'
@@ -42,13 +42,15 @@ export default function UeberMichPage() {
                 transition={{ duration: 0.8 }}
               >
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                  Über mich
+                  Das bin ich – Christian Klose
                 </h1>
                 <p className="text-xl text-accent font-medium mb-4">
-                  Beratung für digitale Transformation & Künstliche Intelligenz
+                  Beratung mit Substanz. Wandel mit Weitblick.
                 </p>
                 <p className="text-lg text-secondary mb-8">
-                  Komplexität meistern. Wandel gestalten. Zukunft sichern.
+                  53 Jahre alt, gebürtig aus Ulm an der Donau – seit über 30 Jahren leidenschaftlich 
+                  in der Medienbranche tätig. Heute begleite ich Unternehmen als Berater für digitale 
+                  Transformation und Künstliche Intelligenz.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center bg-card rounded-full px-4 py-2 border border-border">
@@ -75,7 +77,7 @@ export default function UeberMichPage() {
                 <div className="relative w-full max-w-md mx-auto">
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-hover/20 rounded-3xl blur-3xl"></div>
                   <Image
-                    src="/chris-klose.jpg"
+                    src="/chris-about.jpg"
                     alt="Christian Klose - KI-Berater und Geschäftsführer von beaible Consulting"
                     width={600}
                     height={750}
@@ -89,7 +91,7 @@ export default function UeberMichPage() {
           </div>
         </section>
 
-        {/* Einführung */}
+        {/* Mission */}
         <section className="py-20 bg-muted">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -97,19 +99,24 @@ export default function UeberMichPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
+              className="text-center mb-12"
             >
-              <div className="prose prose-lg max-w-none">
-                <p className="text-xl text-secondary mb-8 leading-relaxed">
-                  Sie stehen vor der Herausforderung, Ihr Unternehmen fit für die digitale Zukunft zu
-                  machen? Dann sind Sie hier genau richtig.
-                </p>
-                <p className="text-lg text-secondary mb-8 leading-relaxed">
-                  Ich unterstütze Unternehmen dabei, Digitalisierung und Künstliche Intelligenz nicht
-                  nur zu verstehen, sondern strategisch und nachhaltig einzusetzen – mit klarem
-                  Fokus auf den konkreten Nutzen für Ihr Geschäft.
-                </p>
-              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Meine Mission
+              </h2>
             </motion.div>
+            <div className="prose prose-lg max-w-4xl mx-auto">
+              <p className="text-xl text-secondary mb-8 leading-relaxed">
+                Ich baue mit beaible ein Beratungsunternehmen auf, das kleine und mittlere 
+                Unternehmen (KMU) branchenübergreifend bei ihrer digitalen Transformation 
+                unterstützt – mit einem besonderen Fokus auf KI-Integration, Prozessoptimierung, 
+                Change-Management und Mitarbeiter:innen-Entwicklung.
+              </p>
+              <p className="text-lg text-secondary mb-8 leading-relaxed">
+                Ich berate nicht nur – ich arbeite partnerschaftlich mit meinen Kunden zusammen, 
+                um gemeinsam tragfähige Strategien zu entwickeln und umzusetzen.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -145,19 +152,28 @@ export default function UeberMichPage() {
                   </div>
                   <div className="space-y-6">
                     <div className="border-l-4 border-accent pl-6">
-                      <h4 className="font-semibold text-foreground mb-2">Schwäbische Zeitung</h4>
-                      <p className="text-accent font-medium mb-2">Über ein Jahrzehnt</p>
+                      <h4 className="font-semibold text-foreground mb-2">Ausbildung & Einstieg</h4>
+                      <p className="text-accent font-medium mb-2">Augsburger Allgemeine</p>
                       <p className="text-secondary">
-                        Redakteur und Führungskraft an der Schnittstelle von Print und Digital. 
-                        Hier erlebte ich die Transformation einer traditionsreichen Branche hautnah mit.
+                        Nach dem Abitur Ausbildung zum Redakteur bei der Augsburger Allgemeinen. 
+                        Hier lernte ich das journalistische Handwerk von Grund auf.
                       </p>
                     </div>
                     <div className="border-l-4 border-accent pl-6">
-                      <h4 className="font-semibold text-foreground mb-2">Digitale Transformation</h4>
-                      <p className="text-accent font-medium mb-2">30+ Jahre</p>
+                      <h4 className="font-semibold text-foreground mb-2">Chefredakteur & Führung</h4>
+                      <p className="text-accent font-medium mb-2">Mehrere deutsche Medienhäuser</p>
                       <p className="text-secondary">
-                        Begleitung von Unternehmen bei der digitalen Transformation mit Fokus auf 
-                        praktische Umsetzung und nachhaltigen Erfolg.
+                        Chefredakteur bzw. in den Chefredaktionen der Nordsee-Zeitung, 
+                        Heilbronner Stimme, Braunschweiger Zeitung, Pforzheimer Zeitung. 
+                        Führungsspanne von bis zu 130 Mitarbeitenden.
+                      </p>
+                    </div>
+                    <div className="border-l-4 border-accent pl-6">
+                      <h4 className="font-semibold text-foreground mb-2">Chief Digital Officer</h4>
+                      <p className="text-accent font-medium mb-2">FUNKE Medien Niedersachsen</p>
+                      <p className="text-secondary">
+                        Gesamtprokura und strategische Verantwortung in der Geschäftsleitung. 
+                        Entwicklung digitaler Produkte, Aufbau datengetriebener Content-Prozesse.
                       </p>
                     </div>
                   </div>
@@ -172,25 +188,40 @@ export default function UeberMichPage() {
               >
                 <div className="bg-card rounded-2xl p-8 border border-border">
                   <div className="flex items-center mb-6">
-                    <Heart className="h-8 w-8 text-accent mr-3" />
-                    <h3 className="text-2xl font-bold text-foreground">Meine Philosophie</h3>
+                    <Award className="h-8 w-8 text-accent mr-3" />
+                    <h3 className="text-2xl font-bold text-foreground">Besondere Kompetenzen</h3>
                   </div>
-                  <div className="prose prose-lg text-secondary">
-                    <p className="mb-6">
-                      Als Redakteur und Berater mit über 30 Jahren Erfahrung an der Schnittstelle von
-                      Redaktion, Digitalisierung und Führung bin ich mehr als ein externer Impulsgeber:
-                    </p>
-                    <div className="bg-accent/10 rounded-xl p-6 mb-6 border border-accent/20">
-                      <p className="text-foreground font-medium text-lg">
-                        Ich bin Ihr strategischer Sparringspartner mit tiefem Verständnis für Prozesse,
-                        Technologien und vor allem Menschen.
-                      </p>
+                  <div className="space-y-4">
+                    <div className="bg-accent/10 rounded-xl p-4 border border-accent/20">
+                      <h4 className="font-semibold text-foreground mb-2">Auszeichnungen</h4>
+                      <ul className="text-sm text-secondary space-y-1">
+                        <li>• 2023: Shortlist der besten Chefredakteure (kress pro)</li>
+                        <li>• 2017: BDZV-Nova-Award für Projekt &ldquo;Nordkind&rdquo;</li>
+                      </ul>
                     </div>
-                    <p>
-                      Ob digitale Strategien, KI-Integration, effizientere Abläufe oder Change-
-                      Management und -Kommunikation – ich analysiere präzise, formuliere klar und
-                      begleite Sie von der Idee bis zur erfolgreichen Umsetzung.
-                    </p>
+                    <div className="space-y-3">
+                      <div className="flex items-start">
+                        <Target className="h-5 w-5 text-accent mt-1 mr-3 flex-shrink-0" />
+                        <div>
+                          <h4 className="font-semibold text-foreground">Strategieentwicklung</h4>
+                          <p className="text-sm text-secondary">Umsetzung digitaler Redaktions- und Geschäftsprozesse</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start">
+                        <Users className="h-5 w-5 text-accent mt-1 mr-3 flex-shrink-0" />
+                        <div>
+                          <h4 className="font-semibold text-foreground">Führung & Coaching</h4>
+                          <p className="text-sm text-secondary">Teams in Veränderungsprozessen begleiten</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start">
+                        <Lightbulb className="h-5 w-5 text-accent mt-1 mr-3 flex-shrink-0" />
+                        <div>
+                          <h4 className="font-semibold text-foreground">Innovation</h4>
+                          <p className="text-sm text-secondary">Innovative Inhalte & Social-Media-Strategien</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>

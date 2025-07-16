@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
-import { ArrowRight, CheckCircle, Calendar, MapPin, Users, Lightbulb, Target, Brain, MessageSquare, Linkedin, Instagram, Mail, Phone, ExternalLink } from 'lucide-react'
+import { ArrowRight, CheckCircle, Calendar, MapPin, Users, Lightbulb, Target, Brain, MessageSquare, Linkedin, Instagram, Mail, Phone, ExternalLink, Shield, AlertTriangle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Logo } from '@/components/ui/Logo'
@@ -23,13 +23,37 @@ const LoaderSequence = dynamic(() => import('../components/LoaderSequence'), {
 // Hero Section
 function HeroSection() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center bg-background pt-16">
-      <div id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-0">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section id="home" className="relative min-h-screen bg-background pt-16">
+      <div id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="flex flex-col items-center space-y-12">
+          {/* Image Section */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="relative w-full"
+          >
+            <div className="relative w-full max-w-4xl mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-hover/20 rounded-3xl blur-3xl"></div>
+              <Image
+                src="/chris-hero.jpg"
+                alt="Christian Klose - KI-Berater und Geschäftsführer von beaible Consulting"
+                width={1200}
+                height={800}
+                className="relative rounded-3xl shadow-2xl w-full h-auto"
+                priority
+                quality={95}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+              />
+            </div>
+          </motion.div>
+
+          {/* Text Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-center max-w-4xl"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
               Bist du schon <span className="text-accent">beaible</span> für die Zukunft?
@@ -39,7 +63,7 @@ function HeroSection() {
               mit persönlicher Beratung aus dem Allgäu und einem ganzheitlichen Ansatz, 
               der Technologie und Menschlichkeit verbindet.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="#beratung" className="inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-full hover:bg-accent-hover transition-colors group" aria-label="Zu den Beratungsleistungen navigieren">
                 Jetzt KI-Ready werden
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -47,27 +71,6 @@ function HeroSection() {
               <a href="#contact" className="inline-flex items-center justify-center px-6 py-3 border-2 border-accent text-accent font-medium rounded-full hover:bg-accent hover:text-white transition-colors" aria-label="Kontaktformular für Erstgespräch öffnen">
                 Erstgespräch buchen
               </a>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="relative w-full max-w-lg mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-hover/20 rounded-3xl blur-3xl"></div>
-              <Image
-                src="/chris-klose.jpg"
-                alt="Christian Klose - KI-Berater und Geschäftsführer von beaible Consulting"
-                width={800}
-                height={1000}
-                className="relative rounded-3xl shadow-2xl w-full h-auto"
-                priority
-                quality={95}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
             </div>
           </motion.div>
         </div>
@@ -89,13 +92,13 @@ function WelcomeSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Willkommen bei beaible
+            KI, die zu Ihrem Unternehmen passt
           </h2>
           <p className="text-xl text-accent font-medium mb-6">
-            Beratung für digitale Transformation & Künstliche Intelligenz
+            Persönliche Beratung aus dem Allgäu – praxisnah, verständlich und umsetzbar
           </p>
           <p className="text-lg text-secondary max-w-2xl mx-auto">
-            Komplexität meistern. Wandel gestalten. Zukunft sichern.
+            Keine Theorie. Keine Buzzwords. Sondern KI, die wirklich hilft.
           </p>
         </motion.div>
 
@@ -107,19 +110,15 @@ function WelcomeSection() {
             viewport={{ once: true }}
           >
             <div className="prose prose-lg text-secondary">
-              <p className="mb-6">
-                Sie stehen vor der Herausforderung, Ihr Unternehmen fit für die digitale Zukunft zu
-                machen? Dann sind Sie hier genau richtig.
+              <p className="mb-6 text-lg">
+                Sie sind Geschäftsführer eines mittelständischen Unternehmens, eher
+                praxisorientiert, und noch etwas skeptisch gegenüber KI, aber offen für
+                konkrete Vorteile? Dann sind Sie bei mir genau richtig!
               </p>
               <p className="mb-6">
                 Ich unterstütze Unternehmen dabei, Digitalisierung und Künstliche Intelligenz nicht
                 nur zu verstehen, sondern strategisch und nachhaltig einzusetzen – mit klarem
                 Fokus auf den konkreten Nutzen für Ihr Geschäft.
-              </p>
-              <p className="mb-6">
-                Als Redakteur und Berater mit über 30 Jahren Erfahrung an der Schnittstelle von
-                Redaktion, Digitalisierung und Führung (über ein Jahrzehnt auch bei der
-                &ldquo;Schwäbischen Zeitung&rdquo;) bin ich mehr als ein externer Impulsgeber:
               </p>
               <p className="mb-6 text-foreground font-medium">
                 Ich bin Ihr strategischer Sparringspartner mit tiefem Verständnis für Prozesse,
@@ -163,6 +162,80 @@ function WelcomeSection() {
   )
 }
 
+// Stärken Section
+function StaerkenSection() {
+  const staerken = [
+    {
+      title: "Langjährige Branchenerfahrung",
+      description: "Über 30 Jahre in der Medienbranche mit Fokus auf journalistische Exzellenz, digitale Transformation und nachhaltiges Change-Management."
+    },
+    {
+      title: "Redaktionelle Fachkompetenz in Crossmedia", 
+      description: "Langjähriger Chefredakteur in mehreren deutschen Medienhäusern – verantwortlich für alle Kanäle und Inhalte, inklusive Social Media."
+    },
+    {
+      title: "Führungskompetenz auf höchster Ebene",
+      description: "Erfahrung in leitenden Positionen, darunter Gesamtprokura bei FUNKE Medien Niedersachsen."
+    },
+    {
+      title: "Technologische Weiterbildung",
+      description: "Aktuelle Fortbildung zum zertifizierten AI Expert an der Digital Business University Berlin (DBU)."
+    },
+    {
+      title: "Starkes Netzwerk",
+      description: "Enge Zusammenarbeit mit erfahrenen Partnern wie Datenmassiv aus Ulm und Heimat Bärenweiler."
+    },
+    {
+      title: "Ganzheitlicher Beratungsansatz",
+      description: "Verbindung von strategischer Beratung, technologischem Know-how und menschlicher Kommunikation."
+    }
+  ]
+
+  return (
+    <section className="py-20 bg-muted">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Meine Stärken auf einen Blick
+          </h2>
+          <p className="text-xl text-secondary max-w-3xl mx-auto">
+            Beratung mit Substanz. Wandel mit Weitblick.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {staerken.map((staerke, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-card rounded-2xl p-6 border border-border hover:shadow-lg transition-shadow"
+            >
+              <div className="flex items-start mb-4">
+                <div className="flex-shrink-0 w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center mr-4">
+                  <CheckCircle className="h-5 w-5 text-accent" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{staerke.title}</h3>
+                  <p className="text-secondary text-sm leading-relaxed">{staerke.description}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // Portfolio Overview
 function PortfolioOverview() {
   const services = [
@@ -174,21 +247,33 @@ function PortfolioOverview() {
     },
     {
       icon: <Lightbulb className="h-8 w-8" />,
-      title: "KI-Medienkompetenz",
-      description: "Schulungen für den sicheren und effektiven Umgang mit KI-Tools",
+      title: "Was ist KI – und was kann sie wirklich?",
+      description: "Realistische Einordnung statt Science-Fiction für Einsteiger:innen",
       href: "/services/ki-medienkompetenz"
     },
     {
       icon: <Users className="h-8 w-8" />,
-      title: "Change Management",
-      description: "Begleitung bei der Integration von KI in Ihre Unternehmenskultur",
-      href: "/services/change-management"
+      title: "KI & Sicherheit",
+      description: "Schutz vor neuen Betrugsmaschen und Sicherheitsrisiken",
+      href: "/services/ki-sicherheit"
     },
     {
       icon: <Target className="h-8 w-8" />,
-      title: "Strategieberatung",
-      description: "Entwicklung maßgeschneiderter KI-Strategien für Ihr Unternehmen",
-      href: "/services/strategieberatung"
+      title: "KI & Social Health",
+      description: "Wie KI unser Miteinander und unsere Kommunikation verändert",
+      href: "/services/ki-social-health"
+    },
+    {
+      icon: <MessageSquare className="h-8 w-8" />,
+      title: "KI, Social Media & Deepfakes",
+      description: "Medienkompetenz zwischen Faszination und Manipulation",
+      href: "/services/ki-medienkompetenz-foerdern"
+    },
+    {
+      icon: <CheckCircle className="h-8 w-8" />,
+      title: "Der EU AI Act",
+      description: "Was der neue KI-Rechtsrahmen für Ihr Unternehmen bedeutet",
+      href: "https://www.datenmassiv.com/eu-ai-act"
     }
   ]
 
@@ -203,10 +288,10 @@ function PortfolioOverview() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4" id="beratung">
-            Mein Portfolio im Überblick
+            Meine Schulungen & Impulse
           </h2>
           <p className="text-xl text-secondary max-w-3xl mx-auto">
-            Ganzheitliche KI-Beratung, die auf die Bedürfnisse von KMU zugeschnitten ist
+            Verständlich. Inspirierend. Wirksam. Praxisnahe Formate für Ihr Team
           </p>
         </motion.div>
 
@@ -221,12 +306,12 @@ function PortfolioOverview() {
             >
               <Link
                 href={service.href}
-                className="block bg-card rounded-2xl p-6 hover:shadow-lg transition-all border border-border hover:scale-105 group"
+                className="block bg-card rounded-2xl p-6 hover:shadow-lg transition-all border border-border hover:scale-105 group h-full flex flex-col"
                 aria-label={`${service.title} - ${service.description}`}
               >
                 <div className="text-accent mb-4 group-hover:scale-110 transition-transform" role="img" aria-label={`${service.title} Icon`}>{service.icon}</div>
                 <h3 className="text-xl font-semibold text-card-foreground mb-2">{service.title}</h3>
-                <p className="text-secondary">{service.description}</p>
+                <p className="text-secondary flex-grow">{service.description}</p>
                 <div className="flex items-center text-accent mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
                   <span className="text-sm font-medium">Mehr erfahren</span>
                   <ArrowRight className="h-4 w-4 ml-1" />
@@ -239,6 +324,129 @@ function PortfolioOverview() {
     </section>
   )
 }
+
+// Medienkompetenz Section
+function MedienkompetenzSection() {
+  return (
+    <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <div className="flex items-center justify-center mb-6">
+            <div className="bg-blue-100 dark:bg-blue-900/30 rounded-full p-4 mr-4">
+              <Shield className="h-12 w-12 text-blue-600" />
+            </div>
+            <div className="bg-indigo-100 dark:bg-indigo-900/30 rounded-full p-4">
+              <AlertTriangle className="h-12 w-12 text-indigo-600" />
+            </div>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            MEDIENKOMPETENZ und KI-KOMPETENZ FÜR ALLE
+          </h2>
+          <p className="text-xl text-secondary max-w-4xl mx-auto">
+            Digitaler Kompass für die gesamte Gesellschaft
+          </p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="prose prose-lg text-secondary">
+              <p className="mb-6 text-xl">
+                In einer Welt, in der die Grenzen zwischen echt und gefälscht verschwimmen, wird 
+                Medienkompetenz zum entscheidenden Schutzschild für Unternehmen und Gesellschaft. 
+                Wir haben es uns zur Aufgabe gemacht, genau diese kritische Kompetenz zu vermitteln.
+              </p>
+              <p className="mb-6 text-lg">
+                Unsere Schulungen verbinden langjährige journalistische Erfahrung und tiefe 
+                KI-Expertise mit praktischem Anwendungswissen. Die Teilnehmer lernen nicht nur, 
+                Fake News und Betrugsversuche zu erkennen, sondern entwickeln ein grundlegendes 
+                Verständnis dafür, wie KI-Systeme funktionieren und missbraucht werden können.
+              </p>
+              <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-8 mb-6 border border-indigo-200 dark:border-indigo-800">
+                <h3 className="font-semibold text-foreground mb-4 flex items-center">
+                  <AlertTriangle className="h-6 w-6 text-indigo-600 mr-2" />
+                  Aktuelle Herausforderungen
+                </h3>
+                <p className="text-secondary">
+                  Im KI-Zeitalter verschwimmen Realität und Fiktion erst recht. Deep Fakes 
+                  lassen zweifeln: War das wirklich? Wurde das tatsächlich gesagt? In dieser 
+                  Welt, wo selbst unseren Augen nicht zu trauen ist, brauchen wir alle einen 
+                  &ldquo;KI- und Medien-Führerschein&rdquo;.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="relative w-full max-w-lg mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-3xl blur-3xl"></div>
+              <Image
+                src="/chris-medienkompetenz.jpg"
+                alt="Christian Klose - KI-Medienkompetenz Experte"
+                width={600}
+                height={800}
+                className="relative rounded-3xl shadow-2xl w-full h-auto"
+                priority
+                quality={95}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <div className="bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl p-8 text-white">
+            <h3 className="text-2xl font-bold mb-4">
+              Medienkompetenz stärken – Demokratie schützen
+            </h3>
+            <p className="text-lg mb-6 max-w-3xl mx-auto">
+              Lassen Sie uns gemeinsam einen digitalen Kompass für Ihre Organisation entwickeln. 
+              Schützen Sie Ihre Mitarbeiter und Kunden vor Manipulation und Betrug.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="#contact" 
+                className="inline-flex items-center px-8 py-3 bg-white text-blue-600 font-medium rounded-full hover:bg-blue-50 transition-colors"
+              >
+                Medienkompetenz-Schulung anfragen
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
+              <a 
+                href="#beratung" 
+                className="inline-flex items-center px-8 py-3 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-blue-600 transition-colors"
+              >
+                Alle Schulungen entdecken
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
 
 // KI-Beratung Section
 function KIBeratungSection() {
@@ -277,7 +485,7 @@ function KIBeratungSection() {
       href: "/services/ki-medienkompetenz-foerdern"
     },
     {
-      title: "KI-Landarzt-Konzept",
+      title: "&ldquo;KI-Landarzt&rdquo;-Konzept",
       subtitle: "Persönliche Beratung vor Ort",
       features: [
         "Regelmäßige Sprechstunden im Allgäu",
@@ -363,6 +571,126 @@ function KIBeratungSection() {
   )
 }
 
+// Beratungsprozess Section
+function BeratungsprozessSection() {
+  const schritte = [
+    {
+      nummer: "1",
+      title: "Verstehen, wo Sie stehen",
+      description: "Im unverbindlichen Erstgespräch kläre ich mit Ihnen Ihre Ausgangssituation, Ihre Ziele – und mögliche Stolpersteine."
+    },
+    {
+      nummer: "2", 
+      title: "Quick-Check & Potenzial-Analyse",
+      description: "Mit meinem kompakten KI-Audit-Toolkit identifiziere ich schnell und praxisnah, wo Ihre größten Hebel liegen."
+    },
+    {
+      nummer: "3",
+      title: "Strategie & Roadmap entwickeln", 
+      description: "Gemeinsam erarbeiten wir eine realistische, maßgeschneiderte Umsetzungsstrategie – technisch machbar, organisatorisch anschlussfähig."
+    },
+    {
+      nummer: "4",
+      title: "Umsetzung begleiten",
+      description: "Ob Pilotprojekt, Tool-Auswahl oder kompletter Change-Prozess: Ich begleite Sie hands-on – pragmatisch und zielgerichtet."
+    },
+    {
+      nummer: "5", 
+      title: "Daten- und KI-Kultur verankern",
+      description: "Ich unterstütze Sie dabei, datengetriebenes Denken langfristig zu etablieren – mit Workshops, klaren Guidelines und Formaten."
+    },
+    {
+      nummer: "6",
+      title: "Reflektieren & skalieren",
+      description: "Am Ende ziehen wir gemeinsam Bilanz – und entwickeln Ansätze, wie Sie KI systematisch ausbauen können."
+    },
+    {
+      nummer: "7",
+      title: "Transformation dauerhaft begleiten",
+      description: "Auf Wunsch bleibe ich als Sparringspartner an Ihrer Seite – mit gezieltem Coaching und kontinuierlicher Strategie-Weiterentwicklung."
+    }
+  ]
+
+  return (
+    <section className="py-20 bg-muted">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Ihr Weg mit mir: Schritt für Schritt zur erfolgreichen KI-Transformation
+          </h2>
+          <p className="text-xl text-secondary max-w-3xl mx-auto">
+            Strukturiert, transparent und immer mit Fokus auf das, was bei Ihnen wirkt
+          </p>
+        </motion.div>
+
+        <div className="relative">
+          {/* Timeline Line */}
+          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-accent/20 hidden md:block"></div>
+          
+          <div className="space-y-8">
+            {schritte.map((schritt, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="flex items-start">
+                  {/* Step Number */}
+                  <div className="flex-shrink-0 w-16 h-16 bg-accent rounded-full flex items-center justify-center text-white font-bold text-xl z-10 relative">
+                    {schritt.nummer}
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="ml-6 flex-1">
+                    <div className="bg-card rounded-2xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow">
+                      <h3 className="text-xl font-bold text-foreground mb-3">{schritt.title}</h3>
+                      <p className="text-secondary leading-relaxed">{schritt.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <div className="bg-accent rounded-2xl p-8 text-white">
+            <h3 className="text-2xl font-bold mb-4">
+              Lust, den ersten Schritt zu gehen?
+            </h3>
+            <p className="text-lg mb-6 max-w-2xl mx-auto">
+              Lassen Sie uns gemeinsam herausfinden, wie Künstliche Intelligenz Ihr Unternehmen 
+              weiterbringen kann – verantwortungsvoll, wirksam und menschenzentriert.
+            </p>
+            <a 
+              href="#contact" 
+              className="inline-flex items-center px-8 py-3 bg-white text-accent font-medium rounded-full hover:bg-accent-hover hover:text-white transition-colors"
+            >
+              Erstgespräch vereinbaren
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
 // Zusätzliche Angebote Section
 function ZusatzangeboteSection() {
   return (
@@ -383,7 +711,7 @@ function ZusatzangeboteSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -446,6 +774,46 @@ function ZusatzangeboteSection() {
               </li>
             </ul>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-green-500/10 to-green-600/20 rounded-2xl p-8 border border-border"
+          >
+            <Shield className="h-12 w-12 text-green-600 mb-4" />
+            <h3 className="text-2xl font-bold text-foreground mb-4">
+              Medienkompetenz-Schulungen
+            </h3>
+            <p className="text-secondary mb-6">
+              Digitale Kompetenz für alle Generationen – von der Erkennung von Fake News bis 
+              zur sicheren Nutzung von KI-Tools. Praxisnahe Workshops für Unternehmen, 
+              Bildungseinrichtungen und Privatpersonen.
+            </p>
+            <ul className="space-y-2 text-secondary">
+              <li className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                Fake News und Deep Fakes erkennen
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                KI-Tools sicher und effektiv nutzen
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                Datenschutz und Privatsphäre schützen
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                Kritisches Denken im digitalen Zeitalter
+              </li>
+            </ul>
+            <div className="mt-4 text-sm text-secondary">
+              <p>✅ Journalistische Expertise seit 30+ Jahren</p>
+              <p>✅ Spezialisiert auf KI-Medienkompetenz</p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -455,6 +823,14 @@ function ZusatzangeboteSection() {
 // KI-Beratung auf dem Land Section
 function KILandSection() {
   const galleryImages: GalleryImage[] = [
+    {
+      src: '/chris-land-landscape.jpg',
+      alt: 'Christian Klose - KI-Berater in ländlicher Atmosphäre',
+      title: 'KI-Beratung auf dem Land',
+      description: 'Moderne KI-Beratung mit der Gemütlichkeit und Bodenständigkeit des Allgäus.',
+      width: 1200,
+      height: 800
+    },
     {
       src: '/baerenweiler-oben.png',
       alt: 'Bärenweiler von oben - Zukunftsort im Allgäu',
@@ -532,7 +908,8 @@ function KILandSection() {
   return (
     <section id="land" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Linke Spalte: KI-Beratung auf dem Land */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -585,10 +962,79 @@ function KILandSection() {
             </div>
           </motion.div>
 
+          {/* Rechte Spalte: KI-Landarzt Karte */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-3xl p-8 border border-green-200 dark:border-green-800">
+              <div className="flex items-center mb-6">
+                <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mr-4">
+                  <MapPin className="h-8 w-8 text-green-600" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-foreground">Der &ldquo;KI-Landarzt&rdquo;</h3>
+                  <p className="text-green-600 font-medium">Erste Hilfe für Ihre Digitalisierung</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4 mb-6">
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" />
+                  <span className="text-secondary">&ldquo;Erste KI-Hilfe&rdquo; für Einsteiger:innen</span>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" />
+                  <span className="text-secondary">Ehrliche Einschätzungen, ob und wo sich KI lohnt</span>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" />
+                  <span className="text-secondary">Kompetente Antworten zu Datenschutz, Tools, Umsetzung</span>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" />
+                  <span className="text-secondary">Vertrauensvolle Vernetzung mit Experten für komplexere Fälle</span>
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <p className="text-lg text-secondary mb-4">
+                  Wie ein Landarzt biete ich werktags eine KI-Sprechstunde in meiner &ldquo;KI-Praxis&rdquo; 
+                  in Bärenweiler an. Dabei höre ich zu, stelle unterstützende Fragen, kläre auf und helfe weiter.
+                </p>
+                <a 
+                  href="#contact" 
+                  className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-medium rounded-full hover:bg-green-700 transition-colors"
+                >
+                  KI-Sprechstunde buchen
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Galerie */}
+        <div className="mt-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
+            <h3 className="text-2xl font-bold text-foreground mb-4">Eindrücke aus Bärenweiler</h3>
+            <p className="text-secondary max-w-2xl mx-auto">
+              Entdecken Sie die Atmosphäre, in der moderne KI-Beratung auf ländliche Gemütlichkeit trifft.
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
             viewport={{ once: true }}
             className="relative"
           >
@@ -1138,8 +1584,11 @@ export default function Home() {
         >
           <HeroSection />
           <WelcomeSection />
+          <StaerkenSection />
           <PortfolioOverview />
+          <MedienkompetenzSection />
           <KIBeratungSection />
+          <BeratungsprozessSection />
           <ZusatzangeboteSection />
           <KILandSection />
           <AboutSection />
