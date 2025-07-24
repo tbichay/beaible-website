@@ -52,46 +52,59 @@ export function ServiceLayout({
             Zurück zur Übersicht
           </Link>
           
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                {title}
-              </h1>
-              <p className="text-xl text-accent font-medium mb-4">
-                {subtitle}
-              </p>
-              <p className="text-lg text-secondary max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              {title}
+            </h1>
+            <p className="text-xl text-accent font-medium mb-4">
+              {subtitle}
+            </p>
+            {description && (
+              <p className="text-lg text-secondary max-w-3xl mb-8">
                 {description}
               </p>
-            </motion.div>
-            
-            {heroImage && (
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative"
-              >
-                <div className="relative w-full max-w-lg mx-auto">
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-hover/20 rounded-3xl blur-3xl"></div>
-                  <Image
-                    src={heroImage.src}
-                    alt={heroImage.alt}
-                    width={600}
-                    height={800}
-                    className="relative rounded-3xl shadow-2xl w-full h-auto"
-                    priority
-                    quality={95}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-              </motion.div>
             )}
-          </div>
+            
+            {/* Content with responsive image layout */}
+            <div className="relative">
+              {heroImage && (
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="lg:float-right lg:ml-8 mb-8 w-full max-w-md lg:max-w-lg mx-auto lg:mx-0"
+                >
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-hover/20 rounded-3xl blur-3xl"></div>
+                    <Image
+                      src={heroImage.src}
+                      alt={heroImage.alt}
+                      width={600}
+                      height={800}
+                      className="relative rounded-3xl shadow-2xl w-full h-auto"
+                      priority
+                      quality={95}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
+                    />
+                  </div>
+                </motion.div>
+              )}
+              
+              {/* Children content flows around image on desktop, stacks on mobile */}
+              {children && (
+                <div className="prose prose-lg max-w-none">
+                  {children}
+                </div>
+              )}
+              
+              {/* Clear float */}
+              <div className="clear-both"></div>
+            </div>
+          </motion.div>
         </div>
       </header>
 
@@ -164,8 +177,6 @@ export function ServiceLayout({
               </div>
             </motion.section>
 
-            {/* Custom Content */}
-            {children}
           </div>
 
           {/* Right Column - Sidebar */}

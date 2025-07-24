@@ -64,7 +64,7 @@ function HeroSection() {
               der Technologie und Menschlichkeit verbindet.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#beratung" className="inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-full hover:bg-accent-hover transition-colors group" aria-label="Zu den Beratungsleistungen navigieren">
+              <a href="#ki-unternehmen" className="inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-full hover:bg-accent-hover transition-colors group" aria-label="Zu den Beratungsleistungen navigieren">
                 Jetzt KI-Ready werden
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </a>
@@ -82,7 +82,7 @@ function HeroSection() {
 // Welcome Section
 function WelcomeSection() {
   return (
-    <section className="py-20 bg-background">
+    <section id="ki-unternehmen" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -249,7 +249,7 @@ function PortfolioOverview() {
       icon: <Lightbulb className="h-8 w-8" />,
       title: "Was ist KI – und was kann sie wirklich?",
       description: "Realistische Einordnung statt Science-Fiction für Einsteiger:innen",
-      href: "/services/ki-medienkompetenz"
+      href: "/services/was-ist-ki"
     },
     {
       icon: <Users className="h-8 w-8" />,

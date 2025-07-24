@@ -151,45 +151,31 @@ function CountdownNumber({ number, isActive }: { number: number, isActive: boole
 
 // Question Component
 function BeaibleQuestion({ onComplete }: { onComplete: () => void }) {
-  const [displayText, setDisplayText] = useState('')
   const fullText = 'Bist du schon beaible für die Zukunft?'
-  const [showCursor, setShowCursor] = useState(true)
 
   useEffect(() => {
-    let i = 0
-    const timer = setInterval(() => {
-      if (i < fullText.length) {
-        setDisplayText(fullText.slice(0, i + 1))
-        i++
-      } else {
-        clearInterval(timer)
-        // Cursor blinken für 2 Sekunden, dann zur Hauptseite
-        setTimeout(() => {
-          setShowCursor(false)
-          setTimeout(onComplete, 500)
-        }, 2000)
-      }
-    }, 80)
-    return () => clearInterval(timer)
-  }, [fullText, onComplete])
+    // Show text for 3 seconds, then proceed to main page
+    const timer = setTimeout(() => {
+      onComplete()
+    }, 3000)
+    return () => clearTimeout(timer)
+  }, [onComplete])
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease: "easeOut" }}
+      initial={{ opacity: 0, scale: 0.1 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.5, ease: "easeOut" }}
       className="text-center relative z-10"
     >
       {/* Logo with dramatic entrance */}
       <motion.div
-        initial={{ scale: 0, rotate: -360 }}
-        animate={{ scale: 1, rotate: 0 }}
-        transition={{ 
-          duration: 1.5,
-          type: "spring",
-          stiffness: 100,
-          damping: 10
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ 
+          opacity: 1,
+          y: 0
         }}
+        transition={{ duration: 0.8, delay: 0.5 }}
         className="mb-12"
       >
         <div className="relative inline-block">
@@ -225,27 +211,18 @@ function BeaibleQuestion({ onComplete }: { onComplete: () => void }) {
         }}
       >
         <span className="bg-gradient-to-r from-cyan-400 via-white to-purple-400 bg-clip-text text-transparent">
-          {displayText}
+          {fullText}
         </span>
-        {showCursor && (
-          <motion.span
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ duration: 0.8, repeat: Infinity }}
-            className="text-cyan-400 ml-1"
-          >
-            |
-          </motion.span>
-        )}
       </motion.h1>
 
       {/* Subtitle that appears after question */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ 
-          opacity: displayText === fullText ? 1 : 0,
-          y: displayText === fullText ? 0 : 20
+          opacity: 1,
+          y: 0
         }}
-        transition={{ duration: 0.8, delay: 0.5 }}
+        transition={{ duration: 0.8, delay: 2.0 }}
         className="text-xl md:text-2xl text-secondary max-w-2xl mx-auto px-4"
       >
         FUTURE STARTS WITH YOU
