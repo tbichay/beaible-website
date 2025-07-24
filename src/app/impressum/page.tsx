@@ -20,8 +20,7 @@ export default function Impressum() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-foreground mb-4">Angaben gemäß § 5 TMG:</h2>
             <p>
-              Christian Klose<br />
-              beaible Consulting<br />
+              Christian Klose Consulting / beaible KI-Beratung<br />
               Bärenweiler 1<br />
               88353 Kißlegg<br />
               Deutschland

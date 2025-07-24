@@ -65,6 +65,16 @@ export default function UeberMichPage() {
                     <Home className="h-5 w-5 text-accent mr-2" />
                     <span className="text-sm font-medium">Bärenweiler, Allgäu</span>
                   </div>
+                  <Link 
+                    href="https://datenmassiv.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center bg-card rounded-full px-4 py-2 border border-border hover:border-accent hover:bg-accent/10 transition-all group"
+                  >
+                    <Users className="h-5 w-5 text-accent mr-2" />
+                    <span className="text-sm font-medium">Starkes Netzwerk</span>
+                    <ExternalLink className="h-3 w-3 ml-1 text-accent opacity-50 group-hover:opacity-100 transition-opacity" />
+                  </Link>
                 </div>
               </motion.div>
 
@@ -77,11 +87,11 @@ export default function UeberMichPage() {
                 <div className="relative w-full max-w-md mx-auto">
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-hover/20 rounded-3xl blur-3xl"></div>
                   <Image
-                    src="/chris-about.jpg"
+                    src="/chris-portrait-new.jpg"
                     alt="Christian Klose - KI-Berater und Geschäftsführer von beaible Consulting"
                     width={600}
-                    height={750}
-                    className="relative rounded-3xl shadow-2xl w-full h-auto"
+                    height={900}
+                    className="relative rounded-3xl shadow-2xl w-full h-auto object-cover"
                     priority
                     quality={95}
                   />
@@ -365,7 +375,7 @@ export default function UeberMichPage() {
               className="text-center mb-16"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Persönlich & Nahbar
+                Persönlich & nahbar
               </h2>
               <p className="text-xl text-secondary max-w-3xl mx-auto">
                 KI-Beratung mit Herz und Verstand aus dem Allgäu

@@ -273,7 +273,7 @@ function PortfolioOverview() {
       icon: <CheckCircle className="h-8 w-8" />,
       title: "Der EU AI Act",
       description: "Was der neue KI-Rechtsrahmen für Ihr Unternehmen bedeutet",
-      href: "https://www.datenmassiv.com/eu-ai-act"
+      href: "/services/eu-ai-act"
     }
   ]
 
@@ -306,7 +306,7 @@ function PortfolioOverview() {
             >
               <Link
                 href={service.href}
-                className="block bg-card rounded-2xl p-6 hover:shadow-lg transition-all border border-border hover:scale-105 group h-full flex flex-col"
+                className="block bg-card dark:bg-gray-900 rounded-2xl p-6 hover:shadow-lg transition-all border border-border hover:scale-105 group h-full flex flex-col"
                 aria-label={`${service.title} - ${service.description}`}
               >
                 <div className="text-accent mb-4 group-hover:scale-110 transition-transform" role="img" aria-label={`${service.title} Icon`}>{service.icon}</div>
@@ -328,7 +328,7 @@ function PortfolioOverview() {
 // Medienkompetenz Section
 function MedienkompetenzSection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
+    <section className="py-20 bg-muted">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -372,7 +372,7 @@ function MedienkompetenzSection() {
                 Fake News und Betrugsversuche zu erkennen, sondern entwickeln ein grundlegendes 
                 Verständnis dafür, wie KI-Systeme funktionieren und missbraucht werden können.
               </p>
-              <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-8 mb-6 border border-indigo-200 dark:border-indigo-800">
+              <div className="bg-card rounded-xl p-8 mb-6 border border-border">
                 <h3 className="font-semibold text-foreground mb-4 flex items-center">
                   <AlertTriangle className="h-6 w-6 text-indigo-600 mr-2" />
                   Aktuelle Herausforderungen
@@ -485,7 +485,7 @@ function KIBeratungSection() {
       href: "/services/ki-medienkompetenz-foerdern"
     },
     {
-      title: `'KI-Landarzt'-Konzept`,
+      title: `'KI-Landarzt'-Idee`,
       subtitle: "Persönliche Beratung vor Ort",
       features: [
         "Regelmäßige Sprechstunden im Allgäu",
@@ -561,7 +561,7 @@ function KIBeratungSection() {
             KI-Integration bedeutet Veränderung. Ich begleite Sie und Ihr Team dabei, 
             diese Transformation als Chance zu nutzen und eine zukunftsfähige Unternehmenskultur zu entwickeln.
           </p>
-          <a href="#contact" className="inline-flex items-center px-6 py-3 bg-white text-accent font-medium rounded-full hover:bg-accent-hover hover:text-white transition-colors">
+          <a href="/services/change-management" className="inline-flex items-center px-6 py-3 bg-white text-accent font-medium rounded-full hover:bg-accent-hover hover:text-white transition-colors">
             Mehr erfahren
             <ArrowRight className="ml-2 h-5 w-5" />
           </a>
@@ -780,7 +780,7 @@ function ZusatzangeboteSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-green-500/10 to-green-600/20 rounded-2xl p-8 border border-border"
+            className="bg-gradient-to-br from-green-500/10 to-green-600/20 dark:from-green-900/20 dark:to-green-800/20 rounded-2xl p-8 border border-border"
           >
             <Shield className="h-12 w-12 text-green-600 mb-4" />
             <h3 className="text-2xl font-bold text-foreground mb-4">
@@ -809,10 +809,16 @@ function ZusatzangeboteSection() {
                 Kritisches Denken im digitalen Zeitalter
               </li>
             </ul>
-            <div className="mt-4 text-sm text-secondary">
-              <p>✅ Journalistische Expertise seit 30+ Jahren</p>
-              <p>✅ Spezialisiert auf KI-Medienkompetenz</p>
-            </div>
+            <ul className="mt-4 space-y-2 text-secondary">
+              <li className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                Journalistische Expertise seit 30+ Jahren
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                Spezialisiert auf KI-Medienkompetenz
+              </li>
+            </ul>
           </motion.div>
         </div>
       </div>
@@ -830,14 +836,6 @@ function KILandSection() {
       description: 'Moderne KI-Beratung mit der Gemütlichkeit und Bodenständigkeit des Allgäus.',
       width: 1200,
       height: 800
-    },
-    {
-      src: '/baerenweiler-oben.png',
-      alt: 'Bärenweiler von oben - Zukunftsort im Allgäu',
-      title: 'Bärenweiler von oben',
-      description: 'Der idyllische Zukunftsort im Herzen des Allgäus, wo Tradition auf Innovation trifft.',
-      width: 800,
-      height: 500
     },
     {
       src: '/office-exterior.jpg',
@@ -916,9 +914,12 @@ function KILandSection() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
               KI-Beratung auf dem Land
             </h2>
+            <p className="text-xl text-accent mb-6">
+              Hier trifft bewegte Vergangenheit auf spannende Zukunft
+            </p>
             <div className="prose prose-lg text-secondary">
               <p className="mb-4">
                 Mein Büro befindet sich unter dem historischen Heustadel in Bärenweiler – 
@@ -969,13 +970,13 @@ function KILandSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-3xl p-8 border border-green-200 dark:border-green-800">
+            <div className="bg-card rounded-3xl p-8 border border-border">
               <div className="flex items-center mb-6">
                 <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mr-4">
                   <MapPin className="h-8 w-8 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-foreground">Der {'\u0027'}KI-Landarzt{'\u0027'}</h3>
+                  <h3 className="text-2xl font-bold text-foreground">Die {'\u0027'}KI-Landarzt{'\u0027'}</h3>
                   <p className="text-green-600 font-medium">Erste Hilfe für Ihre Digitalisierung</p>
                 </div>
               </div>
@@ -1018,6 +1019,27 @@ function KILandSection() {
 
         {/* Galerie */}
         <div className="mt-16">
+          {/* Header Image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="relative w-full mb-12 -mx-4 sm:-mx-6 lg:-mx-8"
+          >
+            <Image
+              src="/baerenweiler-oben.png"
+              alt="Bärenweiler von oben - Zukunftsort im Allgäu"
+              width={1920}
+              height={800}
+              className="w-full h-auto object-cover"
+              priority
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-8">
+              <p className="text-white text-sm">Bild: Paddy Schmitt</p>
+            </div>
+          </motion.div>
+          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

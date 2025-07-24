@@ -2,84 +2,90 @@ import { ServiceLayout } from '@/components/ServiceLayout'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Change Management | beaible Consulting - KI-Transformation erfolgreich gestalten',
-  description: 'Begleitung bei der Integration von KI in Ihre Unternehmenskultur. Erfolgreiche Transformation durch strukturiertes Change Management im Allgäu.',
-  keywords: 'Change Management, KI Transformation, Unternehmenskultur, Führungskräfte Coaching, Mitarbeiter Schulung, Allgäu',
-  openGraph: {
-    title: 'Change Management | beaible Consulting',
-    description: 'Erfolgreiche KI-Integration in Ihre Unternehmenskultur mit strukturiertem Change Management',
-    url: 'https://beaible-consulting.de/services/change-management',
-    images: [
-      {
-        url: 'https://beaible-consulting.de/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Change Management für KI-Transformation',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Change Management | beaible Consulting',
-    description: 'Erfolgreiche KI-Integration in Ihre Unternehmenskultur',
-    images: ['https://beaible-consulting.de/og-image.jpg'],
-  },
-  alternates: {
-    canonical: 'https://beaible-consulting.de/services/change-management'
-  }
+  title: 'Change Management & Persönlichkeitsentwicklung | beaible Consulting',
+  description: 'Veränderung ist ein Prozess. Ich unterstütze Führungskräfte und Teams dabei, innere Blockaden zu erkennen und Veränderung als Chance zu begreifen.',
 }
 
 export default function ChangeManagementPage() {
   return (
     <ServiceLayout
-      title="Change Management"
-      subtitle="Erfolgreiche KI-Integration in Ihre Unternehmenskultur"
-      description="Die Einführung von KI bedeutet mehr als nur neue Technologie – es ist ein kultureller Wandel. Wir begleiten Sie dabei, diese Transformation erfolgreich zu gestalten und Ihre Mitarbeiter mitzunehmen."
+      title="Werde beaible: Change-Management & Persönlichkeitsentwicklung"
+      subtitle="Veränderung ist kein Projekt. Veränderung ist ein Prozess – und oft ein sehr persönlicher."
+      description="Ob digitale Transformation, der Einsatz von KI oder ein grundlegender Kulturwandel im Unternehmen: Erfolgreicher Change beginnt mit den Menschen, die ihn tragen. Mit ihren Überzeugungen, Gewohnheiten, Ängsten – und ihrer Bereitschaft, sich selbst weiterzuentwickeln."
       
       features={[
-        "Stakeholder-Analyse und -Management",
-        "Change-Strategie und Kommunikationsplan",
-        "Widerstandsmanagement und Motivation",
-        "Kulturwandel-Begleitung",
-        "Führungskräfte-Coaching für KI-Transformation",
-        "Mitarbeiter-Workshops und Schulungen",
-        "Change-Monitoring und Anpassungen",
-        "Erfolgsmessung und KPI-Tracking"
+        "Change-Workshops & Zukunftsdialoge",
+        "Einzel-Coachings für Führungskräfte",
+        "Impulse zu Resilienz & Selbstführung",
+        "Team-Entwicklung im Digitalisierungskontext",
+        "Haltung & Mindset-Arbeit",
+        "Veränderungsbegleitung",
+        "Persönlichkeitsentwicklung",
+        "Praxisnahe Methoden & ehrliches Feedback"
       ]}
       
       process={[
-        "IST-Analyse der Unternehmenskultur",
-        "Definition der Ziel-Kultur und Vision",
-        "Entwicklung der Change-Strategie",
-        "Identifikation von Change-Agents",
-        "Kommunikationskampagne starten",
-        "Pilotprojekte und Quick Wins umsetzen",
-        "Vollständige Transformation begleiten",
-        "Nachhaltigkeit sicherstellen"
+        "Erstgespräch und Situationsanalyse",
+        "Definition der Veränderungsziele",
+        "Entwicklung individueller Formate",
+        "Durchführung von Workshops oder Coachings",
+        "Reflexion und Feedbackschleifen",
+        "Transfer in den Alltag begleiten",
+        "Nachhaltige Verankerung sichern",
+        "Langfristige Begleitung nach Bedarf"
       ]}
       
       benefits={[
-        "Reduzierte Widerstände gegen KI-Einführung",
-        "Höhere Akzeptanz neuer Technologien",
-        "Beschleunigte Transformationsprozesse",
-        "Verbesserte Mitarbeitermotivation",
-        "Nachhaltige Verankerung von KI-Kultur",
-        "Minimierte Risiken bei der Einführung",
-        "Erhöhte Innovationsbereitschaft im Team"
+        "Innere Blockaden erkennen und lösen",
+        "Neue Denkweisen etablieren",
+        "Veränderung als Chance begreifen",
+        "Persönliche Weiterentwicklung",
+        "Stärkung der Führungskompetenz",
+        "Erhöhte Veränderungsbereitschaft",
+        "Nachhaltige Kulturentwicklung"
       ]}
       
-      duration="3-12 Monate"
-      targetGroup="Geschäftsführung, HR, Führungskräfte, Change-Manager"
+      duration="Individuell nach Bedarf"
+      targetGroup="Führungskräfte, Teams, Veränderungsbegleiter, Einzelpersonen"
       deliverables={[
-        "Detaillierte Change-Strategie",
-        "Stakeholder-Analyse und -Plan",
-        "Kommunikations-Roadmap",
-        "Workshop-Konzepte und Materialien",
-        "Change-Monitoring Dashboard",
-        "Führungskräfte-Coaching Programme",
-        "Mitarbeiter-Feedback-System",
-        "Nachhaltigkeit-Sicherungsplan"
+        "Maßgeschneiderte Workshop-Konzepte",
+        "Persönliche Coaching-Sessions",
+        "Impulse und Sparrings",
+        "Praxisnahe Übungen und Tools",
+        "Reflexionsmaterialien",
+        "Transferbegleitung",
+        "Langfristige Partnerschaft",
+        "Ehrliches Feedback und klare Sprache"
       ]}
-    />
+    >
+      <div className="space-y-8">
+        <p className="text-lg text-secondary">
+          Bei beaible stehen deshalb nicht nur Strategien und Strukturen im Fokus, sondern vor allem auch die Persönlichkeitsentwicklung.
+        </p>
+        
+        <p className="text-lg text-secondary">
+          Ich unterstütze Führungskräfte, Teams und Einzelpersonen dabei, innere Blockaden zu erkennen, neue Denkweisen zu etablieren und Veränderung als Chance zu begreifen. Mit praxisnahen Methoden, ehrlichem Feedback und einer klaren Sprache.
+        </p>
+        
+        <div className="mt-12">
+          <h3 className="text-2xl font-bold mb-6">Meine Sei-Dazu-Fähig-Angebote in diesem Bereich:</h3>
+          <ul className="text-lg text-secondary list-disc pl-6 space-y-3">
+            <li>Change-Workshops & Zukunftsdialoge für Unternehmen und Organisationen</li>
+            <li>Einzel-Coachings für Führungskräfte & Veränderungsbegleiter</li>
+            <li>Impulse & Sparrings zu Themen wie Resilienz, Selbstführung, Haltung & Mindset</li>
+            <li>Formate zur Team-Entwicklung im Kontext von Digitalisierung und KI</li>
+          </ul>
+        </div>
+        
+        <div className="mt-16 p-8 bg-card rounded-2xl border border-border text-center">
+          <p className="text-xl font-bold text-foreground mb-4">
+            Future starts with you.
+          </p>
+          <p className="text-lg text-secondary">
+            Lass uns gemeinsam herausfinden, was in dir steckt – und wie du andere dabei unterstützen kannst, über sich hinauszuwachsen.
+          </p>
+        </div>
+      </div>
+    </ServiceLayout>
   )
 }

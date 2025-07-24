@@ -2,14 +2,14 @@ import { ServiceLayout } from '@/components/ServiceLayout'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'KI-Landarzt-Konzept | beaible Consulting',
+  title: '"KI-Landarzt"-Idee | beaible Consulting',
   description: 'Persönliche Beratung vor Ort im Allgäu. Regelmäßige Sprechstunden und individuelle Betreuung für nachhaltige KI-Integration.',
 }
 
 export default function KILandarztKonzeptPage() {
   return (
     <ServiceLayout
-      title="KI-Landarzt-Konzept"
+      title='"KI-Landarzt"-Idee'
       subtitle="Persönliche Beratung vor Ort im Allgäu"
       description="Wie ein Landarzt für die Gesundheit, bin ich Ihr persönlicher KI-Berater vor Ort. Regelmäßige Sprechstunden, individuelle Betreuung und eine langfristige Partnerschaft für Ihre KI-Reise."
       
@@ -60,7 +60,7 @@ export default function KILandarztKonzeptPage() {
     >
       <div className="bg-card rounded-2xl p-8 border border-border">
         <h3 className="text-2xl font-bold text-foreground mb-4">
-          Warum das KI-Landarzt-Konzept?
+          Warum die "KI-Landarzt"-Idee?
         </h3>
         <div className="prose prose-lg text-secondary">
           <p>

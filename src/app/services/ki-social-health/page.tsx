@@ -35,7 +35,7 @@ export default function KISocialHealthPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
+      <section className="py-20 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.div
@@ -94,7 +94,7 @@ export default function KISocialHealthPage() {
                   zu entwickeln und aufrechtzuerhalten.
                 </p>
                 
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 mb-8 border border-blue-200 dark:border-blue-800">
+                <div className="bg-card rounded-xl p-6 mb-8 border border-border">
                   <h3 className="font-semibold text-foreground mb-4 flex items-center">
                     <Heart className="h-6 w-6 text-blue-600 mr-2" />
                     Zentrale Aspekte der Social Health
@@ -272,25 +272,25 @@ export default function KISocialHealthPage() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl p-12 text-white">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <div className="bg-card rounded-2xl p-12 border border-border">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
                 Stärken Sie die Social Health in Ihrem Unternehmen
               </h2>
-              <p className="text-xl mb-8 max-w-3xl mx-auto">
+              <p className="text-xl mb-8 max-w-3xl mx-auto text-secondary">
                 Erfahren Sie, wie KI die zwischenmenschlichen Beziehungen beeinflusst und wie Sie 
                 eine gesunde digitale Kommunikationskultur fördern können.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
                   href="/#contact" 
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 font-medium rounded-full hover:bg-blue-50 transition-colors"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-accent text-accent-foreground font-medium rounded-full hover:bg-accent/90 transition-colors"
                 >
                   Social Health Schulung anfragen
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
                 <Link 
                   href="/#beratung" 
-                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-medium rounded-full hover:bg-white hover:text-blue-600 transition-colors"
+                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-border text-foreground font-medium rounded-full hover:bg-muted transition-colors"
                 >
                   Alle Schulungen entdecken
                 </Link>

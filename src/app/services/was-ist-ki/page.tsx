@@ -27,7 +27,7 @@ export default function WasIstKIPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-cyan-50 dark:from-slate-800 dark:to-slate-900">
+      <section className="py-20 bg-muted">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -80,7 +80,7 @@ export default function WasIstKIPage() {
               Stärken der KI
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-gray-200 dark:border-slate-600 shadow-sm">
+              <div className="bg-card rounded-lg p-6 border border-border shadow-sm">
                 <div className="flex items-center mb-3">
                   <Zap className="h-6 w-6 text-accent mr-3" />
                   <h3 className="text-xl font-semibold text-foreground">Automatisierung</h3>
@@ -90,7 +90,7 @@ export default function WasIstKIPage() {
                 </p>
               </div>
               
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-gray-200 dark:border-slate-600 shadow-sm">
+              <div className="bg-card rounded-lg p-6 border border-border shadow-sm">
                 <div className="flex items-center mb-3">
                   <BarChart className="h-6 w-6 text-accent mr-3" />
                   <h3 className="text-xl font-semibold text-foreground">Datenanalyse</h3>
@@ -100,7 +100,7 @@ export default function WasIstKIPage() {
                 </p>
               </div>
               
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-gray-200 dark:border-slate-600 shadow-sm">
+              <div className="bg-card rounded-lg p-6 border border-border shadow-sm">
                 <div className="flex items-center mb-3">
                   <Shield className="h-6 w-6 text-accent mr-3" />
                   <h3 className="text-xl font-semibold text-foreground">Personalisierung</h3>
@@ -110,7 +110,7 @@ export default function WasIstKIPage() {
                 </p>
               </div>
               
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-gray-200 dark:border-slate-600 shadow-sm">
+              <div className="bg-card rounded-lg p-6 border border-border shadow-sm">
                 <div className="flex items-center mb-3">
                   <Clock className="h-6 w-6 text-accent mr-3" />
                   <h3 className="text-xl font-semibold text-foreground">24/7-Verfügbarkeit</h3>
@@ -135,28 +135,28 @@ export default function WasIstKIPage() {
               Grenzen der KI
             </h2>
             <div className="space-y-6">
-              <div className="bg-red-50 dark:bg-slate-800 rounded-lg p-6 border border-red-200 dark:border-red-500">
+              <div className="bg-muted rounded-lg p-6 border border-border">
                 <h3 className="text-xl font-semibold text-foreground mb-2">Kein echtes Verständnis</h3>
                 <p className="text-secondary">
                   KI verarbeitet Sprache, versteht sie aber nicht wie ein Mensch.
                 </p>
               </div>
               
-              <div className="bg-red-50 dark:bg-slate-800 rounded-lg p-6 border border-red-200 dark:border-red-500">
+              <div className="bg-muted rounded-lg p-6 border border-border">
                 <h3 className="text-xl font-semibold text-foreground mb-2">Abhängig von Daten</h3>
                 <p className="text-secondary">
                   Schlechte oder einseitige Daten führen zu verzerrten Ergebnissen.
                 </p>
               </div>
               
-              <div className="bg-red-50 dark:bg-slate-800 rounded-lg p-6 border border-red-200 dark:border-red-500">
+              <div className="bg-muted rounded-lg p-6 border border-border">
                 <h3 className="text-xl font-semibold text-foreground mb-2">Fehlende Intuition</h3>
                 <p className="text-secondary">
                   KI kennt keine Gefühle, kein Bauchgefühl, keine ethischen Werte – sie folgt Algorithmen.
                 </p>
               </div>
               
-              <div className="bg-red-50 dark:bg-slate-800 rounded-lg p-6 border border-red-200 dark:border-red-500">
+              <div className="bg-muted rounded-lg p-6 border border-border">
                 <h3 className="text-xl font-semibold text-foreground mb-2">Komplexität & Intransparenz</h3>
                 <p className="text-secondary">
                   Viele KI-Systeme sind Black Boxes – ihre Entscheidungen sind nicht immer nachvollziehbar.
@@ -177,7 +177,7 @@ export default function WasIstKIPage() {
               Häufige Mythen
             </h2>
             <div className="space-y-6">
-              <div className="bg-yellow-50 dark:bg-slate-800 rounded-lg p-6 border border-yellow-200 dark:border-yellow-500">
+              <div className="bg-muted rounded-lg p-6 border border-border">
                 <h3 className="text-xl font-semibold text-foreground mb-2">
                   &ldquo;KI wird den Menschen ersetzen&rdquo;
                 </h3>
@@ -186,7 +186,7 @@ export default function WasIstKIPage() {
                 </p>
               </div>
               
-              <div className="bg-yellow-50 dark:bg-slate-800 rounded-lg p-6 border border-yellow-200 dark:border-yellow-500">
+              <div className="bg-muted rounded-lg p-6 border border-border">
                 <h3 className="text-xl font-semibold text-foreground mb-2">
                   &ldquo;KI denkt wie ein Mensch&rdquo;
                 </h3>
@@ -195,7 +195,7 @@ export default function WasIstKIPage() {
                 </p>
               </div>
               
-              <div className="bg-yellow-50 dark:bg-slate-800 rounded-lg p-6 border border-yellow-200 dark:border-yellow-500">
+              <div className="bg-muted rounded-lg p-6 border border-border">
                 <h3 className="text-xl font-semibold text-foreground mb-2">
                   &ldquo;KI ist neutral&rdquo;
                 </h3>
@@ -204,7 +204,7 @@ export default function WasIstKIPage() {
                 </p>
               </div>
               
-              <div className="bg-yellow-50 dark:bg-slate-800 rounded-lg p-6 border border-yellow-200 dark:border-yellow-500">
+              <div className="bg-muted rounded-lg p-6 border border-border">
                 <h3 className="text-xl font-semibold text-foreground mb-2">
                   &ldquo;KI kann alles&rdquo;
                 </h3>
@@ -221,7 +221,7 @@ export default function WasIstKIPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center bg-gradient-to-r from-accent/10 to-cyan-50 dark:from-accent/20 dark:to-slate-800 rounded-lg p-8"
+            className="text-center bg-card rounded-lg p-8 border border-border"
           >
             <h3 className="text-2xl font-bold text-foreground mb-4">
               Möchten Sie mehr über KI für Ihr Unternehmen erfahren?
