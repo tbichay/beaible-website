@@ -102,21 +102,21 @@ export default function KIMediankompetenzFoerdernPage() {
           <h3 className="text-xl font-bold mb-4 text-center">Kompakte Alternativen:</h3>
           <div className="space-y-4">
             <p className="text-lg text-secondary italic text-center">
-              "KI & Medienkompetenz – Durchblick im digitalen Dschungel"
+              &ldquo;KI & Medienkompetenz – Durchblick im digitalen Dschungel&rdquo;
             </p>
             <p className="text-secondary text-center">
               Ob Deepfakes oder Social Bot: Wer heute kommuniziert, braucht mehr als nur Bauchgefühl. Ich vermittle praxisnahe Medienkompetenz im KI-Zeitalter – für Marketing, Bildung, Redaktion und Gesellschaft.
             </p>
             <hr className="my-6 border-border" />
             <p className="text-lg text-secondary italic text-center">
-              "Medien verstehen. KI nutzen. Fakes erkennen."
+              &ldquo;Medien verstehen. KI nutzen. Fakes erkennen.&rdquo;
             </p>
             <p className="text-secondary text-center">
               Die digitale Welt fordert uns heraus: Künstliche Intelligenz bringt neue Tools – aber auch neue Täuschungen. Ich zeige, wie man souverän und sicher damit umgeht.
             </p>
             <hr className="my-6 border-border" />
             <p className="text-lg text-secondary italic text-center">
-              "KI trifft Medienkompetenz"
+              &ldquo;KI trifft Medienkompetenz&rdquo;
             </p>
             <p className="text-secondary text-center">
               Mit über 30 Jahren Erfahrung im Journalismus und Digitalwandel zeige ich, wie man Inhalte heute erkennt, einordnet und selbst wirksam kommuniziert – von Social Media bis Schulunterricht.

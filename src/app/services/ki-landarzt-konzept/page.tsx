@@ -60,7 +60,7 @@ export default function KILandarztKonzeptPage() {
     >
       <div className="bg-card rounded-2xl p-8 border border-border">
         <h3 className="text-2xl font-bold text-foreground mb-4">
-          Warum die "KI-Landarzt"-Idee?
+          Warum die &ldquo;KI-Landarzt&rdquo;-Idee?
         </h3>
         <div className="prose prose-lg text-secondary">
           <p>
