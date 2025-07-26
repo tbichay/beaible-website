@@ -2,29 +2,18 @@
 
 import { motion } from 'framer-motion'
 import { Lightbulb, CheckCircle, XCircle, BarChart, Shield, Zap, Clock } from 'lucide-react'
-import Link from 'next/link'
+import { Breadcrumb } from '@/components/ui/Breadcrumb'
 
 export default function WasIstKIPage() {
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Was ist KI' }
+  ]
+
   return (
     <div className="min-h-screen bg-background pt-20">
       {/* Breadcrumb Navigation */}
-      <nav className="bg-card border-b border-border py-4" aria-label="Breadcrumb">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ol className="flex items-center space-x-2 text-sm">
-            <li>
-              <Link href="/" className="text-secondary hover:text-accent transition-colors">
-                Home
-              </Link>
-            </li>
-            <li>
-              <span className="text-secondary">/</span>
-            </li>
-            <li>
-              <span className="text-foreground font-medium">Was ist KI</span>
-            </li>
-          </ol>
-        </div>
-      </nav>
+      <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
       <section className="py-20 bg-muted">

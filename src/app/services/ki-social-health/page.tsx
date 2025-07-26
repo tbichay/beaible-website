@@ -1,38 +1,21 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, ArrowLeft, Users, Heart, MessageSquare, Shield, Brain, CheckCircle, Globe, Smartphone } from 'lucide-react'
+import { ArrowRight, Users, Heart, MessageSquare, Shield, Brain, CheckCircle, Globe, Smartphone } from 'lucide-react'
 import Link from 'next/link'
+import { Breadcrumb } from '@/components/ui/Breadcrumb'
 
 export default function KISocialHealthPage() {
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Schulungen', href: '/#beratung' },
+    { label: 'KI & Social Health' }
+  ]
+
   return (
     <div className="min-h-screen bg-background pt-20">
       {/* Breadcrumb Navigation */}
-      <nav className="bg-card border-b border-border py-4" aria-label="Breadcrumb">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ol className="flex items-center space-x-2 text-sm">
-            <li>
-              <Link href="/" className="text-secondary hover:text-accent transition-colors">
-                Home
-              </Link>
-            </li>
-            <li>
-              <span className="text-secondary">/</span>
-            </li>
-            <li>
-              <Link href="/#beratung" className="text-secondary hover:text-accent transition-colors">
-                Schulungen
-              </Link>
-            </li>
-            <li>
-              <span className="text-secondary">/</span>
-            </li>
-            <li>
-              <span className="text-foreground font-medium">KI & Social Health</span>
-            </li>
-          </ol>
-        </div>
-      </nav>
+      <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero Section */}
       <section className="py-20 bg-muted">
@@ -300,18 +283,6 @@ export default function KISocialHealthPage() {
         </div>
       </section>
 
-      {/* Back Navigation */}
-      <section className="py-8 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link 
-            href="/#beratung" 
-            className="inline-flex items-center text-accent hover:text-accent-hover transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Zurück zu den Schulungen
-          </Link>
-        </div>
-      </section>
     </div>
   )
 }

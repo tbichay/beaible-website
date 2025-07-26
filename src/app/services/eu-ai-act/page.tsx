@@ -1,6 +1,7 @@
 import { ServiceLayout } from '@/components/ServiceLayout'
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { ExternalLink } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Der EU AI Act – Was Unternehmen jetzt wissen müssen | beaible Consulting',
@@ -81,17 +82,21 @@ export default function EuAiActPage() {
         </div>
         
         <div className="mt-8 text-center">
-          <p className="text-secondary mb-4 font-medium">
+          <p className="text-secondary mb-6 font-medium text-lg">
             Für weiterführende Informationen zum EU AI Act:
           </p>
           <Link 
             href="https://datenmassiv.de" 
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-accent hover:text-accent-hover font-medium"
+            className="inline-flex items-center justify-center gap-3 bg-accent hover:bg-accent-hover text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:scale-105 group"
           >
-            → Zum ausführlichen EU AI Act Guide auf Datenmassiv.de
+            <ExternalLink className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <span>Zum ausführlichen EU AI Act Guide auf Datenmassiv.de</span>
           </Link>
+          <p className="text-xs text-secondary mt-3 opacity-75">
+            Externe Ressource mit detaillierten Informationen und Praxisbeispielen
+          </p>
         </div>
       </div>
     </ServiceLayout>

@@ -838,10 +838,10 @@ function KILandSection() {
       height: 800
     },
     {
-      src: '/office-exterior.jpg',
-      alt: 'Bürogebäude außen',
-      title: 'Büro unter dem Heustadel',
-      description: 'Moderne KI-Beratung in historischem Ambiente.',
+      src: '/gallery-screenshot.jpg',
+      alt: 'Blick aus dem Bürofenster auf die Allgäuer Landschaft',
+      title: 'Büroausblick Bärenweiler',
+      description: 'Der inspirierende Blick aus dem Büro auf die Allgäuer Landschaft.',
       width: 400,
       height: 300
     },
@@ -906,12 +906,30 @@ function KILandSection() {
   return (
     <section id="land" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Image für KI-Landarzt Sektion */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="relative w-full mb-16 -mx-4 sm:-mx-6 lg:-mx-8"
+        >
+          <Image
+            src="/workspace.jpg"
+            alt="Die KI-Landarzt Idee - Arbeitsplatz für KI-Beratung im Allgäu"
+            width={1920}
+            height={800}
+            className="w-full h-auto object-cover rounded-3xl lg:rounded-none"
+            priority
+          />
+        </motion.div>
+
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Linke Spalte: KI-Beratung auf dem Land */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
@@ -967,7 +985,7 @@ function KILandSection() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
             <div className="bg-card rounded-3xl p-8 border border-border">
@@ -976,7 +994,7 @@ function KILandSection() {
                   <MapPin className="h-8 w-8 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-foreground">Die {'\u0027'}KI-Landarzt{'\u0027'}</h3>
+                  <h3 className="text-2xl font-bold text-foreground">Die {'\u0027'}KI-Landarzt{'\u0027'}-Idee</h3>
                   <p className="text-green-600 font-medium">Erste Hilfe für Ihre Digitalisierung</p>
                 </div>
               </div>
@@ -1028,16 +1046,13 @@ function KILandSection() {
             className="relative w-full mb-12 -mx-4 sm:-mx-6 lg:-mx-8"
           >
             <Image
-              src="/baerenweiler-oben.png"
-              alt="Bärenweiler von oben - Zukunftsort im Allgäu"
+              src="/ki-landarzt-header.jpg"
+              alt="Moderne Architektur in ländlicher Umgebung - KI-Beratung im Allgäu"
               width={1920}
               height={800}
               className="w-full h-auto object-cover"
               priority
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-8">
-              <p className="text-white text-sm">Bild: Paddy Schmitt</p>
-            </div>
           </motion.div>
           
           <motion.div
@@ -1547,7 +1562,7 @@ function Footer() {
 
         <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-secondary text-sm">
-            © 2024 beaible Consulting. Alle Rechte vorbehalten.
+            © {new Date().getFullYear()} Christian Klose Consulting / beaible KI-Beratung. Alle Rechte vorbehalten.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/impressum" className="text-secondary hover:text-accent text-sm">

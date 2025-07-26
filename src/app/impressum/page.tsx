@@ -76,6 +76,22 @@ export default function Impressum() {
           </section>
 
           <section className="mb-8">
+            <h2 className="text-xl font-semibold text-foreground mb-4">Bildnachweise</h2>
+            <p>
+              Die Portraitfotografien auf dieser Website stammen von{' '}
+              <a 
+                href="https://www.hannahbichay.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-accent hover:text-accent-hover"
+              >
+                Hannah Bichay Photography
+              </a>
+              . Alle Rechte an den Bildern liegen bei der Fotografin.
+            </p>
+          </section>
+
+          <section className="mb-8">
             <h2 className="text-xl font-semibold text-foreground mb-4">Streitschlichtung</h2>
             <p>
               Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-hover">https://ec.europa.eu/consumers/odr</a>.

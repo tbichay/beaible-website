@@ -35,6 +35,11 @@ export default function KIMediankompetenPage() {
       title="KI-Medienkompetenz"
       subtitle="Befähigung Ihres Teams für die KI-Zukunft"
       description="Praktische Schulungen und Workshops, die Ihre Mitarbeiter befähigen, KI-Tools sicher und effektiv zu nutzen. Von den Grundlagen bis zu fortgeschrittenen Anwendungen."
+      breadcrumbItems={[
+        { label: 'Home', href: '/' },
+        { label: 'Schulungen', href: '/#beratung' },
+        { label: 'KI-Medienkompetenz' }
+      ]}
       heroImage={{
         src: "/chris-medienkompetenz.jpg",
         alt: "Christian Klose - KI-Medienkompetenz Schulungen"

@@ -30,7 +30,7 @@ export function Navigation() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             <div className="flex items-baseline space-x-6">
               {navItems.map((item) => (
                 <Link
@@ -48,7 +48,7 @@ export function Navigation() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="lg:hidden flex items-center space-x-2">
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -67,7 +67,7 @@ export function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-t border-border"
+            className="lg:hidden bg-background border-t border-border"
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (

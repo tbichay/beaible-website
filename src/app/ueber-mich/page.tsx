@@ -5,32 +5,27 @@ import { ArrowRight, Calendar, MapPin, Users, Lightbulb, Target, Brain, External
 import Image from 'next/image'
 import Link from 'next/link'
 import { PersonSchema } from '@/components/seo/StructuredData'
+import { Breadcrumb } from '@/components/ui/Breadcrumb'
+import { Navigation } from '@/components/Navigation'
 
 export default function UeberMichPage() {
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Über mich' }
+  ]
+
   return (
     <>
       {/* SEO: Structured Data */}
       <PersonSchema />
       
       <div className="min-h-screen bg-background">
+        <Navigation />
+        
         {/* Breadcrumb Navigation */}
-        <nav className="bg-card border-b border-border py-4" aria-label="Breadcrumb">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ol className="flex items-center space-x-2 text-sm">
-              <li>
-                <Link href="/" className="text-secondary hover:text-accent transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <span className="text-secondary">/</span>
-              </li>
-              <li>
-                <span className="text-foreground font-medium">Über mich</span>
-              </li>
-            </ol>
-          </div>
-        </nav>
+        <div className="pt-16">
+          <Breadcrumb items={breadcrumbItems} />
+        </div>
 
         {/* Hero Section */}
         <section className="py-20 bg-background">
@@ -442,7 +437,8 @@ export default function UeberMichPage() {
                     {[
                       { name: "Datenmassiv", link: "https://datenmassiv.com" },
                       { name: "KI-Weitblick", link: "https://ki-weitblick.com" },
-                      { name: "KI-Medienkompetenz", link: "https://ki-medienkompetenz.com" }
+                      { name: "KI-Medienkompetenz", link: "https://ki-medienkompetenz.com" },
+                      { name: "Hannah Bichay Photography", link: "https://www.hannahbichay.com" }
                     ].map((partner, index) => (
                       <li key={index}>
                         <a 

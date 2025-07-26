@@ -42,6 +42,11 @@ export default function KIFirstAuditPage() {
       title="KI-First-Audit"
       subtitle="Der strategische Einstieg in Ihre KI-Transformation"
       description="Eine umfassende Analyse Ihrer aktuellen Geschäftsprozesse mit dem Fokus auf KI-Potenziale. Wir identifizieren konkrete Ansatzpunkte, wo Künstliche Intelligenz Ihr Unternehmen voranbringen kann."
+      breadcrumbItems={[
+        { label: 'Home', href: '/' },
+        { label: 'Schulungen', href: '/#beratung' },
+        { label: 'KI-First-Audit' }
+      ]}
       
       features={[
         "Detaillierte Prozessanalyse aller Geschäftsbereiche",

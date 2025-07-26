@@ -1,11 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowLeft, CheckCircle, Users, Clock, Target } from 'lucide-react'
+import { CheckCircle, Users, Clock, Target } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ReactNode } from 'react'
 import { Navigation } from '@/components/Navigation'
+import { Breadcrumb } from '@/components/ui/Breadcrumb'
 
 interface ServiceLayoutProps {
   title: string
@@ -22,6 +23,7 @@ interface ServiceLayoutProps {
     alt: string
   }
   children?: ReactNode
+  breadcrumbItems?: Array<{ label: string; href?: string }>
 }
 
 export function ServiceLayout({
@@ -35,23 +37,28 @@ export function ServiceLayout({
   targetGroup,
   deliverables,
   heroImage,
-  children
+  children,
+  breadcrumbItems
 }: ServiceLayoutProps) {
+  // Default breadcrumb items if none provided
+  const defaultBreadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Schulungen', href: '/#beratung' },
+    { label: title }
+  ]
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
 
+      {/* Breadcrumb Navigation */}
+      <div className="pt-16">
+        <Breadcrumb items={breadcrumbItems || defaultBreadcrumbItems} />
+      </div>
+
       {/* Header */}
-      <header className="bg-card border-b border-border pt-16">
+      <header className="bg-card border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <Link 
-            href="/#beratung"
-            className="inline-flex items-center text-accent hover:text-accent-hover mb-4 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Zurück zur Übersicht
-          </Link>
-          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
