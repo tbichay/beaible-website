@@ -838,14 +838,6 @@ function KILandSection() {
       height: 800
     },
     {
-      src: '/gallery-screenshot.jpg',
-      alt: 'Blick aus dem Bürofenster auf die Allgäuer Landschaft',
-      title: 'Büroausblick Bärenweiler',
-      description: 'Der inspirierende Blick aus dem Büro auf die Allgäuer Landschaft.',
-      width: 400,
-      height: 300
-    },
-    {
       src: '/workspace.jpg',
       alt: 'Arbeitsplatz und Büroausstattung',
       title: 'Moderner Arbeitsplatz',
@@ -898,6 +890,30 @@ function KILandSection() {
       alt: 'Weitere Eindrücke vom Standort',
       title: 'Standort-Impressionen',
       description: 'Wo Innovation auf Tradition trifft - weitere Einblicke.',
+      width: 400,
+      height: 300
+    },
+    {
+      src: '/gallery-img2593.jpg',
+      alt: 'Neue Galerie-Aufnahme',
+      title: 'Bärenweiler Eindrücke',
+      description: 'Weitere Einblicke in die Arbeitsumgebung.',
+      width: 400,
+      height: 300
+    },
+    {
+      src: '/gallery-a7977bf7.jpg',
+      alt: 'Büro- und Arbeitsbereich',
+      title: 'Arbeitsbereich Details',
+      description: 'Detailaufnahmen aus dem KI-Beratungsbüro.',
+      width: 400,
+      height: 300
+    },
+    {
+      src: '/gallery-img2495.jpg',
+      alt: 'Zusätzliche Büro-Impressionen',
+      title: 'Büro-Ambiente',
+      description: 'Weitere Eindrücke aus der KI-Beratungsumgebung.',
       width: 400,
       height: 300
     }
